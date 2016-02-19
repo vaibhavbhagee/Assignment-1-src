@@ -30,6 +30,8 @@ public class Button extends AppCompatActivity {
 
 
     Context thisContext = this;
+
+    public String ServerURL = "http://10.192.44.203:8000";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,13 +44,15 @@ public class Button extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                final String loginString1 = "http://10.192.44.203:8000/default/login.json?userid=";
+                final String ServerURL = "http://10.192.44.203:8000";
+
+                final String loginString1 = "/default/login.json?userid=";
                 final String loginString2 = "&password=";
 
                 final String userID = ((EditText) findViewById(R.id.usernameBox)).getText().toString();
                 final String passwd = ((EditText) findViewById(R.id.passwordBox)).getText().toString();
 
-                final String loginRequest = loginString1 + userID + loginString2 + passwd;
+                final String loginRequest = ServerURL + loginString1 + userID + loginString2 + passwd;
 
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
                         new Response.Listener<String>() {
@@ -58,9 +62,24 @@ public class Button extends AppCompatActivity {
 
                                 try {
                                     JSONObject responseJSON = new JSONObject(response);
-                                    JSONObject name = responseJSON.getJSONObject("user");
+   /*UNSUCCESFUL LOGIN*/            if(!responseJSON.getBoolean("success")) {
+                                        new AlertDialog.Builder(thisContext).setTitle("Response").setMessage("Login failure").setNeutralButton("Close", null).show();
+                                    }
+                                    else
+                                    {
+   /*SUCCESFUL LOGIN*/                JSONObject name = responseJSON.getJSONObject("user");
+                                        //new AlertDialog.Builder(thisContext).setTitle("Response").setMessage( name.toString() ).setNeutralButton("Close", null).show();
 
-                                    new AlertDialog.Builder(thisContext).setTitle("Response").setMessage( name.toString() ).setNeutralButton("Close", null).show();
+                                        Intent intent = new Intent(thisContext, HomePage.class);
+                                        Bundle b = new Bundle();
+
+                                        b.putString("ServerURL", ServerURL);
+                                        b.putString("UserJSON", response);
+
+                                        intent.putExtras(b);
+
+                                        startActivity(intent);
+                                    }
 
                                 }catch(Exception e){e.printStackTrace();}
 
@@ -110,4 +129,6 @@ public class Button extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
