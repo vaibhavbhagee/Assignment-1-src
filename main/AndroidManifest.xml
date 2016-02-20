@@ -29,6 +29,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.cop290.assignment2jsonparse.Button" />
         </activity>
+        <activity
+            android:name=".CoursesTab_Activity"
+            android:label="@string/title_activity_courses_tab_"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
