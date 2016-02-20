@@ -1,5 +1,7 @@
 package com.example.cop290.assignment2jsonparse;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +18,7 @@ import android.view.MenuItem;
 public class HomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    Context thisContext = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,9 +94,10 @@ public class HomePage extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.content_home_page,new NotificationsFragment()).commit();
         } else if (id == R.id.nav_grades) {
             fragmentManager.beginTransaction().replace(R.id.content_home_page,new GradesFragment()).commit();
-        } /*else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_courses) {
+            Intent intent = new Intent(thisContext,CoursesTab_Activity.class);
+            startActivity(intent);
+        } /*else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
