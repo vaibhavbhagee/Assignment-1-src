@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cop290.assignment2jsonparse">
-
-    <uses-permission android:name="android.permission.INTERNET" />
+    package="com.example.cop290.assignment1">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -16,8 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Button"
-            android:label="@string/app_name"
+            android:name=".Login_Activity"
+            android:label="@string/title_activity_login_"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,17 +24,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomePage"
-            android:label="@string/title_activity_home_page"
-            android:parentActivityName=".Button"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.cop290.assignment2jsonparse.Button" />
-        </activity>
+            android:name=".HomePage_Activity"
+            android:label="@string/title_activity_home_page_"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CoursesTab_Activity"
-            android:label="@string/title_activity_courses_tab_"
+            android:name=".T"
+            android:label="@string/title_activity_t"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
