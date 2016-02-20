@@ -10,16 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.cop290.assignment2jsonparse.HomePage"
-    tools:showIn="@layout/activity_home_page">
+    tools:showIn="@layout/app_bar_home_page">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOG OUT"
-        android:id="@+id/LogoutButton"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="140dp"
-        android:onClick="LogOutClick" />
+    <FrameLayout
+        android:id="@+id/content_home_page"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+
 </RelativeLayout>
