@@ -11,6 +11,17 @@
         android:layout_height="wrap_content"
         android:textSize="20dp" />
 
+    <EditText
+        android:id="@+id/title"
+        android:hint="Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/description"
+        android:hint="Description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/submit_thread_button"
         android:text="Submit"

@@ -144,4 +144,27 @@ public class HomePage_Activity extends AppCompatActivity {
 
     }
 
+    public void thread_onClick(View view) {
+
+        // NAVIGATE TO INDIVIDUAL THREAD PAGE
+
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.containerView, new IndividualThread_Fragment()).commit();
+    }
+
+    public void post_thread_comment(View view) {
+
+        // POST THE THREAD COMMENT HERE
+        //SEND APPROPRIATE REQUESTS
+    }
+
+    public void navigate_to_assignment(View view) {
+
+        //NAVIGATE TO THE ASSIGNMENT PAGE
+        //SEND APPROPRIATE REQUESTS
+
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.containerView, new IndividualAssignment_Fragment()).commit();
+
+    }
 }

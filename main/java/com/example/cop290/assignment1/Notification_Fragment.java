@@ -41,19 +41,12 @@ public class Notification_Fragment extends Fragment {
 
         ArrayList<ParseNotificationsJSON> test_array = new ArrayList<ParseNotificationsJSON>();
 
-        for(int i=0; i<100; ++i) test_array.add( new ParseNotificationsJSON(""+i));
-
         UserAdapter adapter = new UserAdapter(getActivity(), test_array);
+
         ListView listView = (ListView) view.findViewById(R.id.listView);
         listView.setAdapter(adapter);
     }
 
-    class ParseNotificationsJSON{
-        public String s;
-        public ParseNotificationsJSON(String s){
-            this.s = s;
-        }
-    }
 
     public class UserAdapter extends ArrayAdapter<ParseNotificationsJSON> {
         public UserAdapter(Context context, ArrayList<ParseNotificationsJSON> items) {

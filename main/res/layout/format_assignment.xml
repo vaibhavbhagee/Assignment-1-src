@@ -11,6 +11,7 @@
         android:id="@+id/slno" />
 
     <TextView
+        android:onClick="navigate_to_assignment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
