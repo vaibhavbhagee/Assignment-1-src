@@ -36,74 +36,79 @@ public class Login_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                /*
-                final String ServerURL = "http://10.192.44.203:8000";
+                //login();
 
-                final String loginString1 = "/default/login.json?userid=";
-                final String loginString2 = "&password=";
-
-                final String userID = ((EditText) findViewById(R.id.usernameBox)).getText().toString();
-                final String passwd = ((EditText) findViewById(R.id.passwordBox)).getText().toString();
-
-                final String loginRequest = ServerURL + loginString1 + userID + loginString2 + passwd;
-
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
-                        new Response.Listener<String>() {
-                            @Override
-                            //On valid response
-                            public void onResponse(String response) {
-
-                                try {
-                                    JSONObject responseJSON = new JSONObject(response);
-                                    if(!responseJSON.getBoolean("success")) {
-                                        new AlertDialog.Builder(thisContext).setTitle("Response").setMessage("Login failure").setNeutralButton("Close", null).show();
-                                    }
-                                    else
-                                    {
-                                        JSONObject name = responseJSON.getJSONObject("user");
-                                        //new AlertDialog.Builder(thisContext).setTitle("Response").setMessage( name.toString() ).setNeutralButton("Close", null).show();
-
-                                        Intent intent = new Intent(thisContext, HomePage_Activity.class);
-                                        Bundle b = new Bundle();
-
-                                        b.putString("ServerURL", ServerURL);
-                                        b.putString("UserJSON", response);
-
-                                        intent.putExtras(b);
-
-                                        startActivity(intent);
-                                    }
-
-                                }catch(Exception e){e.printStackTrace();}
-
-                            }
-                        },
-                        //Launched when server return error
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
-
-                                //Toast.makeText(Main4Activity.this, "Server Error. Please check your internet connection.", Toast.LENGTH_LONG).show();
-                            }
-                        }) {
-
-                };
-                //Manages the queue of requests
-                RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
-                requestQueue.add(stringRequest);
-
-
-
-
-            */
                 Intent intent = new Intent(thisContext, HomePage_Activity.class);
                 startActivity(intent);
 
-
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+               ///         .setAction("Action", null).show();
             }
         });
+    }
+
+
+
+    public void login()
+    {
+        final String ServerURL = "http://10.192.44.203:8000";
+
+        final String loginString1 = "/default/login.json?userid=";
+        final String loginString2 = "&password=";
+
+        final String userID = ((EditText) findViewById(R.id.usernameBox)).getText().toString();
+        final String passwd = ((EditText) findViewById(R.id.passwordBox)).getText().toString();
+
+        final String loginRequest = ServerURL + loginString1 + userID + loginString2 + passwd;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
+                new Response.Listener<String>() {
+                    @Override
+                    //On valid response
+                    public void onResponse(String response) {
+
+                        try {
+                            //JSONObject responseJSON = new JSONObject(response);
+                            ParseLoginJSON login_response = new ParseLoginJSON(response);
+
+                            if( ! login_response.success ) {
+                                new AlertDialog.Builder(thisContext).setTitle("Response").setMessage("Login failure, Bhagee pass").setNeutralButton("Close", null).show();
+                            }
+                            else
+                            {
+                                //JSONObject name = responseJSON.getJSONObject("user");
+                                new AlertDialog.Builder(thisContext).setTitle("Response").setMessage( login_response.print() ).setNeutralButton("Close", null).show();
+
+                                Intent intent = new Intent(thisContext, HomePage_Activity.class);
+                                Bundle b = new Bundle();
+
+                                b.putString("ServerURL", ServerURL);
+                                b.putString("UserJSON", response);
+
+                                intent.putExtras(b);
+
+                                //startActivity(intent);
+                            }
+
+                        }catch(Exception e){e.printStackTrace();}
+
+                    }
+                },
+                //Launched when server return error
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+
+                        //Toast.makeText(Main4Activity.this, "Server Error. Please check your internet connection.", Toast.LENGTH_LONG).show();
+                    }
+                }) {
+
+        };
+        //Manages the queue of requests
+        RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
+        requestQueue.add(stringRequest);
+
+
     }
 }
