@@ -1,5 +1,6 @@
 package com.example.cop290.assignment1;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class HomePage_Activity extends AppCompatActivity {
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
 
+    ParseCourseListJSON p=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +54,15 @@ public class HomePage_Activity extends AppCompatActivity {
                 }
 
                 if (menuItem.getItemId() == 1 || menuItem.getItemId() == 2 ||menuItem.getItemId() == 3 || menuItem.getItemId() == 4 || menuItem.getItemId() == 5 || menuItem.getItemId() == 6 || menuItem.getItemId() == 7 || menuItem.getItemId() == 8 || menuItem.getItemId() == 9 || menuItem.getItemId() == 0)  {
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("CourseID", p.courses[menuItem.getItemId()].code);
+
+                    Course_Fragment newcoursefragment = new Course_Fragment();
+                    newcoursefragment.setArguments(bundle);
+
                     FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
-                    xfragmentTransaction.replace(R.id.containerView, new Course_Fragment()).commit();
+                    xfragmentTransaction.replace(R.id.containerView, newcoursefragment ).commit();
                 }
 
                 if (menuItem.getItemId() == R.id.nav_notifications) {
@@ -121,11 +130,12 @@ public class HomePage_Activity extends AppCompatActivity {
 
         try {
             ParseCourseListJSON course_list_json = new ParseCourseListJSON(response);
+            p = new ParseCourseListJSON(response);
 
             for(int i=0;i<course_list_json.courses.length;i++) {
 
                 menu.add(R.id.CourseList, i, Menu.NONE, course_list_json.courses[i].code.toUpperCase());
-
+                p.courses[i].code = p.courses[i].code.toUpperCase();
                 System.out.println(course_list_json.courses[i].code.toUpperCase());
             }
 
