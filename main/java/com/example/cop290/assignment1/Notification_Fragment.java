@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,10 +24,7 @@ public class Notification_Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_notification_, container, false);
-
         populateListView(view);
-
-
         return view;
     }
 
@@ -46,7 +44,6 @@ public class Notification_Fragment extends Fragment {
         for(int i=0; i<100; ++i) test_array.add( new ParseNotificationsJSON(""+i));
 
         UserAdapter adapter = new UserAdapter(getActivity(), test_array);
-
         ListView listView = (ListView) view.findViewById(R.id.listView);
         listView.setAdapter(adapter);
     }
@@ -59,20 +56,24 @@ public class Notification_Fragment extends Fragment {
     }
 
     public class UserAdapter extends ArrayAdapter<ParseNotificationsJSON> {
-        public UserAdapter(Context context, ArrayList<ParseNotificationsJSON> users) {
-            super(context, 0, users);
+        public UserAdapter(Context context, ArrayList<ParseNotificationsJSON> items) {
+            super(context, 0, items);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+
             ParseNotificationsJSON user = getItem(position);
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.format_notification, parent, false);
             }
-            TextView tvName = (TextView) convertView.findViewById(R.id.tvName);
-            TextView tvHome = (TextView) convertView.findViewById(R.id.tvHome);
-            tvName.setText(user.s);
-            tvHome.setText(user.s+"bla bla");
+            LinearLayout layout = (LinearLayout) convertView.findViewById((R.id.layout));
+            TextView slno = (TextView) convertView.findViewById(R.id.slno);
+            TextView notification = (TextView) convertView.findViewById(R.id.notification);
+            TextView time = (TextView) convertView.findViewById(R.id.time);
+
+            // RENDER THE INFORMATION IN THE RESPECTIVE FIELDS
+
             return convertView;
         }
     }

@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Console;
 
@@ -132,4 +133,5 @@ public class HomePage_Activity extends AppCompatActivity {
         }catch(Exception e){e.printStackTrace();}
 
     }
+
 }
