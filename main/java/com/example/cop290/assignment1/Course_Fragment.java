@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.v7.widget.Toolbar;
 
 public class Course_Fragment extends Fragment {
 
@@ -26,7 +27,8 @@ public class Course_Fragment extends Fragment {
         /**
          *Inflate tab_layout and setup Views.
          */
-        View x =  inflater.inflate(R.layout.fragment_course_,null);
+        View x =  inflater.inflate(R.layout.fragment_course_, null);
+
         tabLayout = (TabLayout) x.findViewById(R.id.tabs);
         viewPager = (ViewPager) x.findViewById(R.id.viewpager);
 
@@ -35,6 +37,12 @@ public class Course_Fragment extends Fragment {
          */
         viewPager.setAdapter(new MyAdapter(getChildFragmentManager()));
 
+        //Receiving data from bundle
+        String courseid = getArguments().getString("CourseID");
+
+        ((Toolbar)getActivity().findViewById(R.id.toolbar)).setTitle(courseid);
+//        setSupportActionBar(mActionBarToolbar);
+//        getSupportActionBar().setTitle("My title");
         /**
          * Now , this is a workaround ,
          * The setupWithViewPager dose't works without the runnable .
