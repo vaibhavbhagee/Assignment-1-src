@@ -27,33 +27,47 @@ public class Grades_Fragment extends Fragment {
 
         //GET THE BUNDLE AND ALL THAT SHIZ AND PASS IT TO POPULATE
 
-        populateListView(view, "PASS THE BUNDLE ELEMENT HERE");
+        populateListView(view);
         return view;
     }
 
+    String send_request()
+    {
+        LoadData l = new LoadData();
+        //Store response of get request for course grades
+        String st = l.CourseGradesJSON;
+        return st;
+    }
 
-    void populateListView(View view, String s) {
+    void populateListView(View view) {
+        ArrayList<CourseGradesRowObject> gl=new ArrayList<CourseGradesRowObject>();
 
         try {
-            ParseAllGradesJSON p = new ParseAllGradesJSON("PASS THE BUNDLE ELEMENT HERE");
+            ParseCourseGradesJSON p = new ParseCourseGradesJSON(send_request());
+
+            for (int i = 0; i <p.grades.length; i++)
+            {
+                gl.add(new CourseGradesRowObject(p.grades[i].name,p.grades[i].score,p.grades[i].weightage,
+                        p.grades[i].out_of));
+            }
         }
         catch(Exception e){
             e.printStackTrace();
         }
-        UserAdapter adapter = new UserAdapter(getActivity(), new ArrayList<ParseAllGradesJSON>());
+        UserAdapter adapter = new UserAdapter(getActivity(), gl);
         ListView listView = (ListView) view.findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
     }
 
 
-    public class UserAdapter extends ArrayAdapter<ParseAllGradesJSON> {
-        public UserAdapter(Context context, ArrayList<ParseAllGradesJSON> users) {
+    public class UserAdapter extends ArrayAdapter<CourseGradesRowObject> {
+        public UserAdapter(Context context, ArrayList<CourseGradesRowObject> users) {
             super(context, 0, users);
         }
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ParseAllGradesJSON user = getItem(position);
+            CourseGradesRowObject item = getItem(position);
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.format_grades, parent, false);
             }
@@ -65,7 +79,29 @@ public class Grades_Fragment extends Fragment {
 
             //SET ALL THE PARAMETERS HERE
 
+            slno.setText((position+1)+"");
+            grade_item.setText(item.grade_item+"");
+            score.setText(item.score+"");
+            weight.setText(item.weight+"");
+            absolute_marks.setText(item.absolute_marks+"");
+
             return convertView;
+        }
+    }
+
+    public class CourseGradesRowObject
+    {
+        public String grade_item;
+        public double score;
+        public double weight;
+        public double absolute_marks;
+
+        public CourseGradesRowObject(String grade_item,double score, double weight,double absolute_marks)
+        {
+            this.grade_item = grade_item;
+            this.score = score;
+            this.weight = weight;
+            this.absolute_marks = absolute_marks;
         }
     }
 

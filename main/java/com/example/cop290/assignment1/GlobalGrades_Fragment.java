@@ -31,8 +31,9 @@ public class GlobalGrades_Fragment extends Fragment {
 
     String send_request(){
 
-        // Send request to server and return string reply
-        String st = "{\"courses\": [{\"code\": \"cop290\", \"name\": \"Design Practices in Computer Science\", \"description\": \"Design Practices in Computer Science.\", \"credits\": 3, \"id\": 1, \"l_t_p\": \"0-0-6\"}, {\"code\": \"cop290\", \"name\": \"Design Practices in Computer Science\", \"description\": \"Design Practices in Computer Science.\", \"credits\": 3, \"id\": 1, \"l_t_p\": \"0-0-6\"}, {\"code\": \"cop290\", \"name\": \"Design Practices in Computer Science\", \"description\": \"Design Practices in Computer Science.\", \"credits\": 3, \"id\": 1, \"l_t_p\": \"0-0-6\"}], \"grades\": [{\"weightage\": 10.0, \"user_id\": 4, \"name\": \"Assignment 1\", \"out_of\": 15.0, \"registered_course_id\": 1, \"score\": 15.0, \"id\": 10}, {\"weightage\": 15.0, \"user_id\": 4, \"name\": \"Assignment 2\", \"out_of\": 20.0, \"registered_course_id\": 1, \"score\": 20.0, \"id\": 11}, {\"weightage\": 25.0, \"user_id\": 4, \"name\": \"Minor 1\", \"out_of\": 30.0, \"registered_course_id\": 1, \"score\": 15.0, \"id\": 12}]}";
+        LoadData l = new LoadData();
+        //Store response of get request for course grades
+        String st = l.AllGradesJSON;
         return st;
     }
 

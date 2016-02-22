@@ -37,9 +37,10 @@ public class IndividualThread_Fragment extends Fragment {
 
     String send_request(){
 
-        // Send request to server and return string reply
-
-        return "return particular thread json";
+        LoadData l = new LoadData();
+        //Store response of get request for individual threads
+        String st = l.InfoThreadJSON;
+        return st;
     }
 
     String getUsername(int id)

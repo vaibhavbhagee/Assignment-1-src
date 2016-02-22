@@ -31,9 +31,10 @@ public class Threads_Fragment extends Fragment {
 
     String send_request(){
 
-        // Send request to server and return string reply
-
-        return "return course threads json";
+        LoadData l = new LoadData();
+        //Store response of get request for course threads
+        String st = l.ListCourseThreadsJSON;
+        return st;
     }
 
     void populateListView(View view) {

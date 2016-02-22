@@ -36,9 +36,10 @@ public class Notification_Fragment extends Fragment {
 
     String send_request(){
 
-        // Send request to server and return string reply
-
-        return "{\"notifications\": [{\"user_id\": 4, \"description\": \"<a href='/users/user/4'>Vinay Ribeiro</a> posted a new <a href='/threads/thread/4'>thread</a> for <a href='/courses/course/cop290'>cop290</a>.\", \"is_seen\": 1, \"created_at\": \"2016-02-21 19:03:02\", \"id\": 16}]}";
+        LoadData l = new LoadData();
+        //Store response of get request for all notifications
+        String st = l.AllNotificationsJSON;
+        return st;
     }
 
     String ret_duration(String inputDate) throws ParseException {

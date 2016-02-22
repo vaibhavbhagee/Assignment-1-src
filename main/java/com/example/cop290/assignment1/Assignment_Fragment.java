@@ -35,9 +35,10 @@ public class Assignment_Fragment extends Fragment {
 
     String send_request(){
 
-        // Send request to server and return string reply
-
-        return "bla bla";
+        LoadData l = new LoadData();
+        //Store response of get request for all assignments
+        String st = l.ListOfAllAssignmentsJSON;
+        return st;
     }
 
     String ret_duration(String inputDate) throws ParseException {
