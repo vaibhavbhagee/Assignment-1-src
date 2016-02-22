@@ -16,6 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.io.Console;
 
@@ -100,14 +108,8 @@ public class HomePage_Activity extends AppCompatActivity {
         set_param();
         mDrawerToggle.syncState();
 
-        /*final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-               // navigationView.getMenu().findItem(R.id.nav_notifications).setChecked(true);
-                return true;
-            }
-        });*/
+
+        sendrequest();
 
         Menu menu = mNavigationView.getMenu();
 
@@ -142,4 +144,33 @@ public class HomePage_Activity extends AppCompatActivity {
         }catch(Exception e){e.printStackTrace();}
 
     }
+
+    public void sendrequest()
+    {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://10.192.44.203:8000/courses/list.json" ,
+                new Response.Listener<String>() {
+                    @Override
+                    //On valid response
+                    public void onResponse(String response) {
+
+                        Toast.makeText(HomePage_Activity.this, response, Toast.LENGTH_LONG).show();
+
+                    }
+                },
+                //Launched when server return error
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+
+                        //Toast.makeText(Main4Activity.this, "Server Error. Please check your internet connection.", Toast.LENGTH_LONG).show();
+                    }
+                }) {
+
+        };
+        //Manages the queue of requests
+        RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
+        requestQueue.add(stringRequest);
+    }
+
 }
