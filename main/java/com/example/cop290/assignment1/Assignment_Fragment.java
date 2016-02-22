@@ -11,7 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
@@ -36,6 +40,72 @@ public class Assignment_Fragment extends Fragment {
         return "bla bla";
     }
 
+    String ret_duration(String inputDate) throws ParseException {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = (Date)formatter.parse(inputDate);
+        Date d = new Date();
+        long getmills = d.getTime()-date.getTime();
+        long days = getmills/86400000;
+        long days_residue = getmills%86400000;
+        long hrs = days_residue/3600000;
+        long hr_residue = getmills%3600000;
+        long min = hr_residue/60000;
+
+        String st = "";
+        if(days !=0)
+        {
+            if (hrs !=0)
+            {
+                if (min !=0)
+                {
+                    st+=days+" days, "+hrs+" hrs, "+min+" minutes";
+                }
+                else
+                {
+                    st+=days+" days, "+hrs+" hrs ";
+                }
+            }
+            else
+            {
+                if (min !=0)
+                {
+                    st+=days+" days, "+min+" minutes";
+                }
+                else
+                {
+                    st+=days+" days";
+                }
+            }
+        }
+        else
+        {
+            if (hrs !=0)
+            {
+                if (min !=0)
+                {
+                    st+=hrs+" hrs, "+min+" minutes";
+                }
+                else
+                {
+                    st+=hrs+" hrs ";
+                }
+            }
+            else
+            {
+                if (min !=0)
+                {
+                    st+=min+" minutes";
+                }
+                else
+                {
+                    st+="";
+                }
+            }
+        }
+
+        return st;
+    }
+
     void populateListView(View view) {
 
         ArrayList<AssignmentsRowObject> gl=new ArrayList<AssignmentsRowObject>();
@@ -43,7 +113,7 @@ public class Assignment_Fragment extends Fragment {
             ParseCourseAssignmentsJSON p = new ParseCourseAssignmentsJSON(send_request());
             for (int i = 0; i <p.assignments.length; i++)
             {
-                gl.add(new AssignmentsRowObject(p.assignments[i].name,p.assignments[i].deadline));
+                gl.add(new AssignmentsRowObject(p.assignments[i].name,ret_duration(p.assignments[i].deadline)));
             }
         }
         catch(Exception e){
