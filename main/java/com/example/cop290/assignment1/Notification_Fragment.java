@@ -37,7 +37,7 @@ public class Notification_Fragment extends Fragment {
 
         // Send request to server and return string reply
 
-        return "bla bla";
+        return "{\"notifications\": [{\"user_id\": 4, \"description\": \"<a href='/users/user/4'>Vinay Ribeiro</a> posted a new <a href='/threads/thread/4'>thread</a> for <a href='/courses/course/cop290'>cop290</a>.\", \"is_seen\": 1, \"created_at\": \"2016-02-21 19:03:02\", \"id\": 16}]}";
     }
 
 
@@ -49,15 +49,15 @@ public class Notification_Fragment extends Fragment {
 //            gl = new ArrayList<GradesRowObject>();
             for (int i = 0; i <p.notifications.length; i++)
             {
-                DateFormat formatter = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss");
-                Date date = (Date)formatter.parse(p.notifications[i].created_at);
-                Date d = new Date();
-                long getmills = d.getTime()-date.getTime();
-                long hrs = getmills/3600000;
-                long hr_residue = getmills%3600000;
-                long min = hr_residue/60000;
+//                DateFormat formatter = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss");
+//                Date date = (Date)formatter.parse(p.notifications[i].created_at);
+//                Date d = new Date();
+//                long getmills = d.getTime()-date.getTime();
+//                long hrs = getmills/3600000;
+//                long hr_residue = getmills%3600000;
+//                long min = hr_residue/60000;
 
-                gl.add(new NotificationsRowObject(p.notifications[i].description,hrs+" hours, "+min+" minutes ago"));
+                gl.add(new NotificationsRowObject(p.notifications[i].description,p.notifications[i].created_at));
             }
         }
         catch(Exception e){
@@ -90,7 +90,7 @@ public class Notification_Fragment extends Fragment {
 
             // RENDER THE INFORMATION IN THE RESPECTIVE FIELDS
             slno.setText((position+1)+"");
-            notification.loadDataWithBaseURL("",user.notification,"text/html","UTF-8","");
+            notification.loadData(user.notification,"text/html; charset=UTF-8",null);
             time.setText(user.time);
 
             return convertView;

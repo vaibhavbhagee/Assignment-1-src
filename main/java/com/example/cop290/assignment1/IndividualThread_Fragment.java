@@ -35,8 +35,22 @@ public class IndividualThread_Fragment extends Fragment {
         return view;
     }
 
+    String send_request(){
+
+        // Send request to server and return string reply
+
+        return "return particular thread json";
+    }
+
+    String getUsername(int id)
+    {
+        //function to get username by making a get request to /users/user.json/id
+        return "return relevant value";
+    }
+
     void populateView(View view) {
 
+        ArrayList<CommentsRowObject> gl=new ArrayList<CommentsRowObject>();
         // GET RELEVANT DATA HERE
 
         TextView thread_user = (TextView) view.findViewById(R.id.thread_user);
@@ -45,22 +59,42 @@ public class IndividualThread_Fragment extends Fragment {
         TextView thread_created_at = (TextView) view.findViewById(R.id.thread_created_at);
         TextView thread_updated_at = (TextView) view.findViewById(R.id.thread_updated_at);
 
+        try {
+            ParseParticularThreadJSON p = new ParseParticularThreadJSON(send_request());
+            for (int i = 0; i <p.comments.length; i++)
+            {
+                gl.add(new CommentsRowObject(p.comment_users[i].username,p.comments[i].description,p.times_readable[i]));
+            }
+
+            thread_user.setText(getUsername(p.thread.user_id));
+            thread_title.setText(p.thread.title);
+            thread_description.setText(p.thread.description);
+            thread_created_at.setText(p.thread.created_at);
+            thread_updated_at.setText(p.thread.updated_at);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+
+
         //SET THE PARAMETERS HERE
 
-        UserAdapter adapter = new UserAdapter(getActivity(), new ArrayList<ParseAllGradesJSON>());
+        UserAdapter adapter = new UserAdapter(getActivity(), gl);
         ListView listView = (ListView) view.findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
     }
 
 
-    public class UserAdapter extends ArrayAdapter<ParseAllGradesJSON> {
-        public UserAdapter(Context context, ArrayList<ParseAllGradesJSON> users) {
+    public class UserAdapter extends ArrayAdapter<CommentsRowObject> {
+        public UserAdapter(Context context, ArrayList<CommentsRowObject> users) {
             super(context, 0, users);
         }
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ParseAllGradesJSON user = getItem(position);
+            CommentsRowObject user = getItem(position);
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.format_individual_thread, parent, false);
             }
@@ -71,6 +105,19 @@ public class IndividualThread_Fragment extends Fragment {
             //SET ALL THE PARAMETERS HERE
 
             return convertView;
+        }
+    }
+
+    public class CommentsRowObject
+    {
+        public String user_name;
+        public String comment;
+        public String time_readable;
+
+        public CommentsRowObject(String user_name, String comment, String time_readable) {
+            this.user_name = user_name;
+            this.comment = comment;
+            this.time_readable = time_readable;
         }
     }
 }
