@@ -40,7 +40,10 @@ public class IndividualAssignment_Fragment extends Fragment {
 
     String send_request() {
 
-        return "return the particular assignment json";
+        LoadData l = new LoadData();
+        //Store response of get request for particular assignments
+        String st = l.InfoOfParticularAssignmentJSON;
+        return st;
     }
 
     void populateView(View view) {
