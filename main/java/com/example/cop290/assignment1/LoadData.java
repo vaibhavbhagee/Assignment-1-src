@@ -29,11 +29,16 @@ public class LoadData extends Activity {
     public static String InfoThreadJSON;
     public static String CreateNewThreadJSON;
     public static String AddCommentThreadJSON;
+    public static String UserInfoJSON;
+    public static Context thisContext = null;
 
-    Context thisContext = (Context)this;
     private String ServerURL = "http://10.192.44.203:8000";
     private String loginRequest;
 
+    public void setContext(Context c)
+    {
+        thisContext = c;
+    }
 
     public void SetBasicInfoForUser()
     {
@@ -311,5 +316,60 @@ public class LoadData extends Activity {
         requestQueue.add(stringRequest);
     }
 
+
+    public void ObtainUserInfo(String id)
+    {
+        loginRequest = ServerURL + "/users/user.json/"+id;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
+                new Response.Listener<String>() {
+                    @Override
+                    //On valid response
+                    public void onResponse(String response) {
+
+                        UserInfoJSON = response;
+
+                    }
+                },
+                //Launched when server return error
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+
+                    }
+                }) {
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
+        requestQueue.add(stringRequest);
+    }
+
+
+    public void LogoutUser()
+    {
+        loginRequest = ServerURL + "/default/logout.json";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
+                new Response.Listener<String>() {
+                    @Override
+                    //On valid response
+                    public void onResponse(String response) {
+
+                    }
+                },
+                //Launched when server return error
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+
+                    }
+                }) {
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
+        requestQueue.add(stringRequest);
+    }
 
 }

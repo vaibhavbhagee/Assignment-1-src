@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
+        android:textStyle="bold|italic"
         android:id="@+id/slno" />
 
     <TextView
@@ -15,6 +16,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
+        android:paddingLeft="20dp"
         android:id="@+id/course" />
 
     <TextView
@@ -22,6 +24,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
+        android:paddingLeft="20dp"
+
         android:id="@+id/grade_item" />
 
     <TextView
@@ -29,6 +33,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
+        android:paddingLeft="20dp"
+
         android:id="@+id/score" />
 
     <TextView
@@ -36,6 +42,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
+        android:paddingLeft="20dp"
+
         android:id="@+id/weight" />
 
     <TextView
@@ -43,6 +51,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
+        android:paddingLeft="20dp"
+
         android:id="@+id/absolute_marks" />
 
 </LinearLayout>
