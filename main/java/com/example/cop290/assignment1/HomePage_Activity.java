@@ -126,12 +126,13 @@ public class HomePage_Activity extends AppCompatActivity {
                 R.color.google_green,
                 R.color.google_red,
                 R.color.google_yellow);
+        swipeRefreshLayout.setSize(SwipeRefreshLayout.LARGE);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 on_refresh();
-                swipeRefreshLayout.setRefreshing(false);
+                //swipeRefreshLayout.setRefreshing(false);
             }
         });
 
