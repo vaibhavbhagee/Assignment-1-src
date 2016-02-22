@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -7,7 +7,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="1"
+        android:textSize="60dp"
+        android:paddingTop="20dp"
+        android:paddingLeft="20dp"
         android:id="@+id/slno" />
 
     <TextView
@@ -16,6 +19,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
+        android:paddingTop="20dp"
+        android:textSize="28dp"
+        android:layout_toRightOf="@+id/slno"
+        android:paddingLeft="20dp"
+
         android:id="@+id/name" />
 
     <TextView
@@ -23,5 +31,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
+        android:textSize="28dp"
+        android:paddingBottom="20dp"
+        android:layout_toRightOf="@+id/slno"
+        android:layout_below="@+id/name"
+        android:paddingLeft="20dp"
         android:id="@+id/time" />
-</LinearLayout>
+</RelativeLayout>

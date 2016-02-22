@@ -51,10 +51,10 @@ public class Login_Activity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                login();
+                //login();
 
-               // Intent intent = new Intent(thisContext, HomePage_Activity.class);
-                //startActivity(intent);
+               Intent intent = new Intent(thisContext, HomePage_Activity.class);
+                startActivity(intent);
 
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                ///         .setAction("Action", null).show();
@@ -66,7 +66,7 @@ public class Login_Activity extends AppCompatActivity {
 
     public void login()
     {
-        final String ServerURL = "http://10.192.44.203:8000";
+        final String ServerURL = "http://10.192.11.155:8000";
 
         final String loginString1 = "/default/login.json?userid=";
         final String loginString2 = "&password=";

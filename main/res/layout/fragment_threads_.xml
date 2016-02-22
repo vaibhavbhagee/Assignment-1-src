@@ -1,39 +1,50 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.cop290.assignment1.Threads_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!--<TextView
         android:text="Post a new Thread"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp" />
+        android:textSize="20dp" />-->
 
     <EditText
         android:id="@+id/title"
         android:hint="Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:id="@+id/description"
-        android:hint="Description"
-        android:layout_width="wrap_content"
+        android:layout_width="135dp"
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/submit_thread_button"
-        android:text="Submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:text="Start New Thread"
+        android:layout_gravity="end"
+        android:layout_width="80dp"
+        android:layout_height="81dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/description"
+        android:hint="Description"
+        android:layout_below="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/submit_thread_button" />
+
 
     <!-- ALIGNMENT WAGARAH PLEASE DEKH LE  -->
 
     <ListView
+        android:layout_marginTop="80dp"
         android:layout_gravity="bottom"
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></ListView>
 
-</FrameLayout>
+
+</RelativeLayout>

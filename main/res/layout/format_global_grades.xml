@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -7,7 +7,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="Sno"
+        android:textSize="30dp"
+        android:width="100dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
         android:textStyle="bold|italic"
         android:id="@+id/slno" />
 
@@ -15,16 +19,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:paddingLeft="20dp"
+        android:text="Course"
+        android:paddingTop="20dp"
+
+        android:layout_marginLeft="100dp"
         android:id="@+id/course" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:paddingLeft="20dp"
+        android:text="Grade Item"
+        android:paddingTop="20dp"
+
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@+id/course"
 
         android:id="@+id/grade_item" />
 
@@ -32,8 +41,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:paddingLeft="20dp"
+        android:text="Score"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="10dp"
+        android:layout_marginLeft="80dp"
+        android:layout_below="@+id/slno"
+        android:paddingBottom="20dp"
 
         android:id="@+id/score" />
 
@@ -41,18 +55,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="Weight"
+        android:paddingTop="25dp"
         android:paddingLeft="20dp"
+        android:paddingBottom="5dp"
+
+        android:layout_toRightOf="@+id/score"
+        android:layout_below="@+id/grade_item"
 
         android:id="@+id/weight" />
 
-    <TextView
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="AbsMarks"
+        android:paddingTop="10dp"
+        android:layout_toRightOf="@+id/weight"
         android:paddingLeft="20dp"
+        android:layout_below="@+id/grade_item"
 
         android:id="@+id/absolute_marks" />
-
-</LinearLayout>
+-->
+</RelativeLayout>

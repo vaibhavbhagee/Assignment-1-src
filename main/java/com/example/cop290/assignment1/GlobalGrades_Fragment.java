@@ -79,11 +79,11 @@ public class GlobalGrades_Fragment extends Fragment {
 
             //SET ALL THE PARAMETERS HERE
             slno.setText((position+1)+"");
-            course.setText(item.course+"");
-            grade_item.setText(item.grade_item+"");
-            score.setText(item.score+"");
-            weight.setText(item.weight+"");
-            absolute_marks.setText(item.absolute_marks+"");
+            course.setText(item.course.toUpperCase()+"");
+            grade_item.setText(item.grade_item);
+            score.setText(item.score+"/"+item.absolute_marks);
+            weight.setText("Weightage: " + item.weight);
+           // absolute_marks.setText(item.absolute_marks+"");
 
             return convertView;
         }
