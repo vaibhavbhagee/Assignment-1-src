@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:text="slno" />
     <WebView
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="30dp"
         android:id="@+id/notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

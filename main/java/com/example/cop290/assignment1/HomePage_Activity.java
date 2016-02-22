@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class HomePage_Activity extends AppCompatActivity {
     NavigationView mNavigationView;
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     ParseCourseListJSON p=null;
     @Override
@@ -40,10 +42,12 @@ public class HomePage_Activity extends AppCompatActivity {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.replace(R.id.containerView, new HomePage_Fragment()).commit();
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 mDrawerLayout.closeDrawers();
@@ -93,6 +97,7 @@ public class HomePage_Activity extends AppCompatActivity {
                 return false;
             }
         });
+
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout, toolbar,R.string.app_name,
                 R.string.app_name);
@@ -109,6 +114,18 @@ public class HomePage_Activity extends AppCompatActivity {
                 return true;
             }
         });*/
+        swipeRefreshLayout.setColorSchemeResources(R.color.google_blue,
+                R.color.google_green,
+                R.color.google_red,
+                R.color.google_yellow);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                on_refresh();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         Menu menu = mNavigationView.getMenu();
 
@@ -166,5 +183,11 @@ public class HomePage_Activity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.containerView, new IndividualAssignment_Fragment()).commit();
 
+    }
+
+    public void on_refresh(){
+        Toast.makeText(HomePage_Activity.this, "Checking the refresh", Toast.LENGTH_LONG).show();
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.containerView, new HomePage_Fragment()).commit();
     }
 }
