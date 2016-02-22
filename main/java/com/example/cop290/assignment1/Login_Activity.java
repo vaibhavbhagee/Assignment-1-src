@@ -80,7 +80,7 @@ public class Login_Activity extends AppCompatActivity {
                     @Override
                     //On valid response
                     public void onResponse(String response) {
-                        
+
 
                         try {
                             //JSONObject responseJSON = new JSONObject(response);

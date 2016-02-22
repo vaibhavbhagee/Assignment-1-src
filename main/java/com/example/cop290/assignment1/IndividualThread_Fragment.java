@@ -17,26 +17,36 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Assignment_Fragment extends Fragment {
+public class IndividualThread_Fragment extends Fragment {
+
+
+    public IndividualThread_Fragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_assignment_, container, false);
-        populateListView(view);
+        View view = inflater.inflate(R.layout.fragment_individual_thread_, container, false);
+        populateView(view);
 
         return view;
     }
 
-    void populateListView(View view) {
+    void populateView(View view) {
 
-        try {
-            ParseAllGradesJSON p = new ParseAllGradesJSON("I don't know what to do\nI don't know what to do");
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        // GET RELEVANT DATA HERE
+
+        TextView thread_user = (TextView) view.findViewById(R.id.thread_user);
+        TextView thread_title = (TextView) view.findViewById(R.id.thread_title);
+        TextView thread_description = (TextView) view.findViewById(R.id.thread_description);
+        TextView thread_created_at = (TextView) view.findViewById(R.id.thread_created_at);
+        TextView thread_updated_at = (TextView) view.findViewById(R.id.thread_updated_at);
+
+        //SET THE PARAMETERS HERE
+
         UserAdapter adapter = new UserAdapter(getActivity(), new ArrayList<ParseAllGradesJSON>());
         ListView listView = (ListView) view.findViewById(R.id.listView);
         listView.setAdapter(adapter);
@@ -48,21 +58,19 @@ public class Assignment_Fragment extends Fragment {
         public UserAdapter(Context context, ArrayList<ParseAllGradesJSON> users) {
             super(context, 0, users);
         }
-
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ParseAllGradesJSON user = getItem(position);
             if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.format_assignment, parent, false);
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.format_individual_thread, parent, false);
             }
-            TextView slno = (TextView) convertView.findViewById(R.id.slno);
-            TextView course = (TextView) convertView.findViewById(R.id.name);
-            TextView grade_item = (TextView) convertView.findViewById(R.id.time);
+            TextView user_name = (TextView) convertView.findViewById(R.id.user);
+            TextView comment = (TextView) convertView.findViewById(R.id.comment);
+            TextView time_readable = (TextView) convertView.findViewById(R.id.time_readable);
 
             //SET ALL THE PARAMETERS HERE
 
             return convertView;
         }
     }
-
 }
