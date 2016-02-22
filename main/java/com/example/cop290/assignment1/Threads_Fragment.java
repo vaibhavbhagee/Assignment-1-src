@@ -29,39 +29,66 @@ public class Threads_Fragment extends Fragment {
         return view;
     }
 
+    String send_request(){
+
+        // Send request to server and return string reply
+
+        return "return course threads json";
+    }
+
     void populateListView(View view) {
 
+        ArrayList<ThreadsRowObject> gl=new ArrayList<ThreadsRowObject>();
         try {
-            ParseAllGradesJSON p = new ParseAllGradesJSON("I don't know what to do\nI don't know what to do");
+            ParseCourseThreadsJSON p = new ParseCourseThreadsJSON(send_request());
+            for (int i = 0; i <p.threads.length; i++)
+            {
+                gl.add(new ThreadsRowObject(p.threads[i].title,p.threads[i].updated_at));
+            }
         }
         catch(Exception e){
             e.printStackTrace();
         }
-        UserAdapter adapter = new UserAdapter(getActivity(), new ArrayList<ParseAllGradesJSON>());
+        UserAdapter adapter = new UserAdapter(getActivity(), gl);
         ListView listView = (ListView) view.findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
     }
 
 
-    public class UserAdapter extends ArrayAdapter<ParseAllGradesJSON> {
-        public UserAdapter(Context context, ArrayList<ParseAllGradesJSON> users) {
+    public class UserAdapter extends ArrayAdapter<ThreadsRowObject> {
+        public UserAdapter(Context context, ArrayList<ThreadsRowObject> users) {
             super(context, 0, users);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ParseAllGradesJSON user = getItem(position);
+            ThreadsRowObject user = getItem(position);
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.format_threads, parent, false);
             }
             TextView slno = (TextView) convertView.findViewById(R.id.slno);
-            TextView course = (TextView) convertView.findViewById(R.id.title);
-            TextView grade_item = (TextView) convertView.findViewById(R.id.updatedon);
+            TextView title = (TextView) convertView.findViewById(R.id.title);
+            TextView updatedon = (TextView) convertView.findViewById(R.id.updatedon);
 
             //SET ALL THE PARAMETERS HERE
 
+            slno.setText((position+1)+"");
+            title.setText(user.title);
+            updatedon.setText(user.updatedon);
+
             return convertView;
+        }
+    }
+
+    public class ThreadsRowObject
+    {
+        public String title;
+        public String updatedon;
+
+        public ThreadsRowObject(String  title, String updatedon) {
+            this.title = title;
+            this.updatedon = updatedon;
         }
     }
 }
