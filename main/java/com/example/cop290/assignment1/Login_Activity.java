@@ -50,9 +50,10 @@ public class Login_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 login();
 
-                //Intent intent = new Intent(thisContext, HomePage_Activity.class);
+               // Intent intent = new Intent(thisContext, HomePage_Activity.class);
                 //startActivity(intent);
 
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -80,7 +81,6 @@ public class Login_Activity extends AppCompatActivity {
                     @Override
                     //On valid response
                     public void onResponse(String response) {
-
 
                         try {
                             //JSONObject responseJSON = new JSONObject(response);
