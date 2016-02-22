@@ -46,6 +46,7 @@ public class HomePage_Activity extends AppCompatActivity {
 
 
 
+
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);

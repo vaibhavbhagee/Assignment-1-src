@@ -16,9 +16,7 @@ public class Cookies extends Application {
         cookieManage= new CookieManager();
         CookieHandler.setDefault(cookieManage);
         super.onCreate();
-//        courses=new ArrayList<>();
-        //urls=new String[10];
-
-
     }
+
+
 }
