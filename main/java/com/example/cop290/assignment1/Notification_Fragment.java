@@ -90,7 +90,7 @@ public class Notification_Fragment extends Fragment {
 
             // RENDER THE INFORMATION IN THE RESPECTIVE FIELDS
             slno.setText((position+1)+"");
-            notification.loadDataWithBaseURL("",user.notification,"text/html","UTF-8","");
+            notification.loadData(user.notification,"text/html; charset=UTF-8",null);
             time.setText(user.time);
 
             return convertView;
