@@ -75,15 +75,15 @@ public class Grades_Fragment extends Fragment {
             TextView grade_item = (TextView) convertView.findViewById(R.id.grade_item);
             TextView score = (TextView) convertView.findViewById(R.id.score);
             TextView weight = (TextView) convertView.findViewById(R.id.weight);
-            TextView absolute_marks = (TextView) convertView.findViewById(R.id.absolute_marks);
+            //TextView absolute_marks = (TextView) convertView.findViewById(R.id.absolute_marks);
 
             //SET ALL THE PARAMETERS HERE
 
             slno.setText((position+1)+"");
             grade_item.setText(item.grade_item+"");
-            score.setText(item.score+"");
-            weight.setText(item.weight+"");
-            absolute_marks.setText(item.absolute_marks+"");
+            score.setText(item.score+"/"+item.absolute_marks);
+            weight.setText("Weightage: " + item.weight+"");
+            //absolute_marks.setText(item.absolute_marks+"");
 
             return convertView;
         }

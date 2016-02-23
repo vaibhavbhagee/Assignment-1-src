@@ -76,7 +76,7 @@ public class GlobalGrades_Fragment extends Fragment {
             TextView grade_item = (TextView) convertView.findViewById(R.id.grade_item);
             TextView score = (TextView) convertView.findViewById(R.id.score);
             TextView weight = (TextView) convertView.findViewById(R.id.weight);
-            TextView absolute_marks = (TextView) convertView.findViewById(R.id.absolute_marks);
+            //TextView absolute_marks = (TextView) convertView.findViewById(R.id.absolute_marks);
 
             //SET ALL THE PARAMETERS HERE
             slno.setText((position+1)+"");
