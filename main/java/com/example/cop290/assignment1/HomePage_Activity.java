@@ -288,13 +288,13 @@ public class HomePage_Activity extends AppCompatActivity {
             }
             public void onFinish() {
                 if(l.flag[6]){
-                    System.out.println("done \t"+l.InfoOfParticularAssignmentJSON);
+                    System.out.println("done \t" + l.InfoOfParticularAssignmentJSON);
                     FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
                     xfragmentTransaction.replace(R.id.containerView, new IndividualAssignment_Fragment()).commit();
 
                 } else {
                     timer3(l);
-                    System.out.println("pocessing \t" + l.flag[6]+l.InfoOfParticularAssignmentJSON);
+                    System.out.println("pocessing \t" + l.flag[6] + l.InfoOfParticularAssignmentJSON);
                 }
             }
         }.start();
@@ -334,6 +334,12 @@ public class HomePage_Activity extends AppCompatActivity {
         l.flag[3] = false;
         l.flag[4] = false;
         l.flag[5] = false;
+
+    }
+
+    public void post_new_thread(View view) {
+        //POST NEW THREAD HERE
+        Toast.makeText(HomePage_Activity.this,"New thread button working", Toast.LENGTH_LONG).show();
 
     }
 }
