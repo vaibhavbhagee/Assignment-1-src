@@ -18,7 +18,7 @@ public class Course_Fragment extends Fragment {
 
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
-    public static int int_items = 4 ;
+    public static int int_items = 3 ;
 
     public Course_Fragment(){
 
@@ -68,9 +68,8 @@ public class Course_Fragment extends Fragment {
         {
             switch (position){
                 case 0 : return new Assignment_Fragment();
-                case 1 : return new Resources_Fragment();
-                case 2 : return new Threads_Fragment();
-                case 3 : return new Grades_Fragment();
+                case 1 : return new Threads_Fragment();
+                case 2 : return new Grades_Fragment();
             }
             return null;
         }
@@ -92,11 +91,11 @@ public class Course_Fragment extends Fragment {
             switch (position){
                 case 0 :
                     return "Assignment";
+                //case 1 :
+                //    return "Resources";
                 case 1 :
-                    return "Resources";
-                case 2 :
                     return "Threads";
-                case 3:
+                case 2:
                     return "Grades";
             }
             return null;
