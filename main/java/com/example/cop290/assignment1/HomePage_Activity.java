@@ -50,6 +50,8 @@ public class HomePage_Activity extends AppCompatActivity {
     boolean flag_nav;
 
     ParseCourseListJSON p=null;
+    public String name = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +64,18 @@ public class HomePage_Activity extends AppCompatActivity {
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.replace(R.id.containerView, new HomePage_Fragment()).commit();
+
+        String json_response = savedInstanceState.getString("UserJSON");
+        try
+        {
+            ParseLoginJSON p = new ParseLoginJSON(json_response);
+            this.name = p.user.first_name+" "+p.user.last_name;
+        }
+        catch (Exception e)
+        {
+
+        }
+
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
             @Override
@@ -236,7 +250,7 @@ public class HomePage_Activity extends AppCompatActivity {
 
         View v = mNavigationView.getHeaderView(0);
         TextView t = ((TextView) v.findViewById(R.id.textView));
-        t.setText("naam daal de");
+        t.setText(this.name);
 
 
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
