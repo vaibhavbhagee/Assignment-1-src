@@ -19,6 +19,7 @@ public class Course_Fragment extends Fragment {
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
     public static int int_items = 4 ;
+    public String coursecode = "";
 
     public Course_Fragment(){
 
@@ -34,10 +35,11 @@ public class Course_Fragment extends Fragment {
         tabLayout = (TabLayout) x.findViewById(R.id.tabs);
         viewPager = (ViewPager) x.findViewById(R.id.viewpager);
 
-        viewPager.setAdapter(new MyAdapter(getChildFragmentManager()));
-
         //Receiving data from bundle
         String courseid = getArguments().getString("CourseID");
+        this.coursecode = courseid;
+
+        viewPager.setAdapter(new MyAdapter(getChildFragmentManager(),courseid));
 
         ((Toolbar)getActivity().findViewById(R.id.toolbar)).setTitle(courseid);
 
@@ -55,7 +57,9 @@ public class Course_Fragment extends Fragment {
 
     class MyAdapter extends FragmentPagerAdapter{
 
-        public MyAdapter(FragmentManager fm) {
+        public String course = "";
+        public MyAdapter(FragmentManager fm,String course) {
+            this.course = course;
             super(fm);
         }
 
@@ -69,7 +73,7 @@ public class Course_Fragment extends Fragment {
             switch (position){
                 case 0 : return new Assignment_Fragment();
                 case 1 : return new Resources_Fragment();
-                case 2 : return new Threads_Fragment();
+                case 2 : return new Threads_Fragment(this.course);
                 case 3 : return new Grades_Fragment();
             }
             return null;
