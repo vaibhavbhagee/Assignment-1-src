@@ -5,9 +5,19 @@
     tools:context="com.example.cop290.assignment1.Assignment_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/no_assignment"
+        android:visibility="invisible"
+        android:layout_marginTop="28dp"
+        android:textSize="28dp"
+        android:textAlignment="center"
+        android:text="Yay! No Notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <ListView
-        android:layout_marginTop="20dp"
         android:id="@+id/listView"
+        android:paddingTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></ListView>
 

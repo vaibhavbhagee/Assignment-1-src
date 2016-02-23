@@ -3,6 +3,7 @@ package com.example.cop290.assignment1;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -146,12 +147,13 @@ public class Notification_Fragment extends Fragment {
             }
             RelativeLayout layout = (RelativeLayout) convertView.findViewById((R.id.layout));
             TextView slno = (TextView) convertView.findViewById(R.id.slno);
-            WebView notification = (WebView) convertView.findViewById(R.id.notification);
+            TextView notification = (TextView) convertView.findViewById(R.id.notification);
             TextView time = (TextView) convertView.findViewById(R.id.time);
 
             // RENDER THE INFORMATION IN THE RESPECTIVE FIELDS
             slno.setText((position+1)+"");
-            notification.loadData(user.notification,"text/html; charset=UTF-8",null);
+            notification.setText(Html.fromHtml(user.notification));
+            //notification.loadData(user.notification,"text/html; charset=UTF-8",null);
             time.setText(user.time);
 
             return convertView;

@@ -112,6 +112,10 @@ public class Assignment_Fragment extends Fragment {
         ArrayList<AssignmentsRowObject> gl=new ArrayList<AssignmentsRowObject>();
         try {
             ParseCourseAssignmentsJSON p = new ParseCourseAssignmentsJSON(send_request());
+            if(p.assignments.length==0){
+                TextView t = (TextView) view.findViewById(R.id.no_assignment);
+                t.setVisibility(View.VISIBLE);
+            }
             for (int i = 0; i <p.assignments.length; i++)
             {
                 gl.add(new AssignmentsRowObject(p.assignments[i].name,ret_duration(p.assignments[i].deadline)));
