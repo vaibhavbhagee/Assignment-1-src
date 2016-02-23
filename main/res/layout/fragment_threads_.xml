@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.cop290.assignment1.Threads_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -20,6 +21,7 @@
         android:textSize="20dp" />
 
     <EditText
+        android:backgroundTint="@color/google_green"
         android:layout_below="@+id/random"
         android:id="@+id/title"
         android:hint="Title"
@@ -37,6 +39,7 @@
         android:layout_alignParentEnd="true" />
     -->
     <android.support.design.widget.FloatingActionButton
+        app:backgroundTint="@color/google_green"
         android:onClick="post_new_thread"
         android:id="@+id/submit_thread_button"
         android:layout_width="wrap_content"
@@ -49,6 +52,7 @@
         android:layout_alignParentEnd="true" />
 
     <EditText
+        android:backgroundTint="@color/google_green"
         android:id="@+id/description"
         android:hint="Description"
         android:layout_below="@+id/title"

@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.cop290.assignment1.IndividualThread_Fragment">
 
     <TextView
@@ -52,6 +53,7 @@
         android:layout_height="wrap_content" />
 
     <EditText
+        android:backgroundTint="@color/google_green"
         android:hint="Comment"
         android:layout_below="@+id/thread_description"
         android:layout_marginLeft="20dp"
@@ -62,17 +64,25 @@
         android:layout_height="wrap_content" />
 
     <android.support.design.widget.FloatingActionButton
+        app:backgroundTint="@color/google_green"
         android:onClick="post_thread_comment"
         android:id="@+id/post_comment"
-        android:foregroundGravity="right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
         android:src="@android:drawable/ic_menu_send"
+<<<<<<< HEAD
         android:layout_marginLeft="320dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="120dp"
       />
+=======
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginTop="110dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        />
+>>>>>>> 13143661c6245c75d54014786234e8353ca8a497
 
     <ListView
         android:layout_marginTop="200dp"

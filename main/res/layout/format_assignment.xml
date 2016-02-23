@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
-        android:textSize="28dp"
+        android:textSize="20dp"
         android:paddingBottom="20dp"
         android:layout_toRightOf="@+id/slno"
         android:layout_below="@+id/name"

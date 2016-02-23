@@ -8,13 +8,14 @@
 
 
     <android.support.design.widget.TabLayout
+        android:layout_marginTop="-5dp"
         android:id="@+id/tabs"
         app:tabGravity="fill"
         app:tabMode="fixed"
         android:background="@color/colorPrimary"
         app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-        app:tabIndicatorColor="@color/colorPrimaryDark"
-        app:tabSelectedTextColor="@color/colorPrimaryDark"
+        app:tabIndicatorColor="@color/google_yellow"
+        app:tabSelectedTextColor="@color/google_yellow"
         app:tabTextColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
