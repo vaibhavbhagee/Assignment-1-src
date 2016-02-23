@@ -51,10 +51,10 @@ public class Login_Activity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                //login();
+                login();
 
-               Intent intent = new Intent(thisContext, HomePage_Activity.class);
-                startActivity(intent);
+//               Intent intent = new Intent(thisContext, HomePage_Activity.class);
+//                startActivity(intent);
 
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                ///         .setAction("Action", null).show();
@@ -85,6 +85,7 @@ public class Login_Activity extends AppCompatActivity {
                         try {
                             //JSONObject responseJSON = new JSONObject(response);
                             ParseLoginJSON login_response = new ParseLoginJSON(response);
+                            System.out.println(response);
 
                             if( ! login_response.success ) {
                                 new AlertDialog.Builder(thisContext).setTitle("Response").setMessage("Login failure, Bhagee pass").setNeutralButton("Close", null).show();

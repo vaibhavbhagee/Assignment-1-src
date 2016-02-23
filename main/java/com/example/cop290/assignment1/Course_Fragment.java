@@ -32,22 +32,13 @@ public class Course_Fragment extends Fragment {
         tabLayout = (TabLayout) x.findViewById(R.id.tabs);
         viewPager = (ViewPager) x.findViewById(R.id.viewpager);
 
-        /**
-         *Set an Apater for the View Pager
-         */
         viewPager.setAdapter(new MyAdapter(getChildFragmentManager()));
 
         //Receiving data from bundle
         String courseid = getArguments().getString("CourseID");
 
         ((Toolbar)getActivity().findViewById(R.id.toolbar)).setTitle(courseid);
-//        setSupportActionBar(mActionBarToolbar);
-//        getSupportActionBar().setTitle("My title");
-        /**
-         * Now , this is a workaround ,
-         * The setupWithViewPager dose't works without the runnable .
-         * Maybe a Support Library Bug .
-         */
+
 
         tabLayout.post(new Runnable() {
             @Override

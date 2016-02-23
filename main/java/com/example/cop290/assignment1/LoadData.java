@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -18,6 +19,8 @@ import com.android.volley.toolbox.Volley;
  * Created by Aayan Kumar on 22-02-2016.
  */
 public class LoadData extends Activity {
+
+    public static boolean[] flag = new boolean[10];
 
     public static String ListOfCoursesJSON;
     public static String AllNotificationsJSON;
@@ -40,7 +43,7 @@ public class LoadData extends Activity {
         thisContext = c;
     }
 
-    public void SetBasicInfoForUser() {
+    public void SetCourses() {
         loginRequest = ServerURL + "/courses/list.json";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest,
                 new Response.Listener<String>() {
@@ -49,6 +52,8 @@ public class LoadData extends Activity {
                     public void onResponse(String response) {
 
                         ListOfCoursesJSON = response;
+                        System.out.println(ListOfCoursesJSON);
+                        flag[0] = true;
                     }
                 },
                 //Launched when server return error
@@ -66,7 +71,7 @@ public class LoadData extends Activity {
         requestQueue.add(stringRequest);
     }
 
-    void SetNotifications(){
+    public void SetNotifications(){
         loginRequest = ServerURL + "/default/notifications.json";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest,
                 new Response.Listener<String>() {
@@ -75,6 +80,7 @@ public class LoadData extends Activity {
                     public void onResponse(String response) {
 
                         AllNotificationsJSON = response;
+                        flag[1] = true;
                     }
                 },
                 //Launched when server return error
@@ -92,7 +98,7 @@ public class LoadData extends Activity {
         requestQueue.add(stringRequest);
     }
 
-    void SetGrades(){
+    public void SetGrades(){
         loginRequest = ServerURL + "/default/grades.json";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
                 new Response.Listener<String>() {
@@ -101,6 +107,7 @@ public class LoadData extends Activity {
                     public void onResponse(String response) {
 
                         AllGradesJSON = response;
+                        flag[2] = true;
 
                     }
                 },
@@ -119,7 +126,6 @@ public class LoadData extends Activity {
         requestQueue.add(stringRequest);
 
     }
-
 
     public void SetListOfAssignments(String CourseCode) {
         loginRequest = ServerURL + "/courses/course.json/" + CourseCode + "/assignments";
@@ -148,7 +154,7 @@ public class LoadData extends Activity {
         requestQueue.add(stringRequest);
     }
 
-    void SetCoursegrades(String CourseCode) {
+    public void SetCoursegrades(String CourseCode) {
 
         loginRequest = ServerURL + "/courses/course.json/" + CourseCode + "/grades";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest,
@@ -176,7 +182,7 @@ public class LoadData extends Activity {
         requestQueue.add(stringRequest);
     }
 
-    void SetCourseThreads(String CourseCode){
+    public void SetCourseThreads(String CourseCode){
 
         loginRequest = ServerURL + "/courses/course.json/"+CourseCode+"/threads";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
@@ -205,9 +211,7 @@ public class LoadData extends Activity {
 
     }
 
-
-    public void SetInfoOfAssignment(String ass_no)
-    {
+    public void SetInfoOfAssignment(String ass_no){
         loginRequest = ServerURL + "/courses/assignment.json/"+ass_no;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
                 new Response.Listener<String>() {
@@ -234,9 +238,7 @@ public class LoadData extends Activity {
         requestQueue.add(stringRequest);
     }
 
-
-    public void SetInfoOfThread(String thread)
-    {
+    public void SetInfoOfThread(String thread){
         loginRequest = ServerURL + "/threads/thread.json/"+thread;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
                 new Response.Listener<String>() {
@@ -263,9 +265,7 @@ public class LoadData extends Activity {
         requestQueue.add(stringRequest);
     }
 
-
-    public void SetCreateNewThread(String title, String desc, String coursecode)
-    {
+    public void SetCreateNewThread(String title, String desc, String coursecode){
         loginRequest = ServerURL + "/threads/new.json?title="+title+"&description="+desc+"&course_code="+coursecode;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
                 new Response.Listener<String>() {
@@ -292,9 +292,7 @@ public class LoadData extends Activity {
         requestQueue.add(stringRequest);
     }
 
-
-    public void SetAddCommentToThread(String thread, String desc)
-    {
+    public void SetAddCommentToThread(String thread, String desc){
         loginRequest = ServerURL + "/threads/post_comment.json?thread_id="+thread+"&description="+desc;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
                 new Response.Listener<String>() {
@@ -321,9 +319,7 @@ public class LoadData extends Activity {
         requestQueue.add(stringRequest);
     }
 
-
-    public void ObtainUserInfo(String id)
-    {
+    public void ObtainUserInfo(String id){
         loginRequest = ServerURL + "/users/user.json/"+id;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
                 new Response.Listener<String>() {
@@ -350,9 +346,7 @@ public class LoadData extends Activity {
         requestQueue.add(stringRequest);
     }
 
-
-    public void LogoutUser()
-    {
+    public void LogoutUser(){
         loginRequest = ServerURL + "/default/logout.json";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
                 new Response.Listener<String>() {

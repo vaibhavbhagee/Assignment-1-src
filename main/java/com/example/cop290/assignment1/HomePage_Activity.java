@@ -100,7 +100,7 @@ public class HomePage_Activity extends AppCompatActivity {
 
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout, toolbar,R.string.app_name, R.string.app_name);
-        on_refresh();
+
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
@@ -118,8 +118,10 @@ public class HomePage_Activity extends AppCompatActivity {
             }
         });
 
+        on_refresh();
         Menu menu = mNavigationView.getMenu();
         getCoursesAndAddToList(menu);
+
     }
 
     void getCoursesAndAddToList(Menu menu)
@@ -171,27 +173,20 @@ public class HomePage_Activity extends AppCompatActivity {
     public void on_refresh(){
         final LoadData l = new LoadData();
         l.setContext(thisContext);
-        l.SetBasicInfoForUser();
 
-        new CountDownTimer(3000, 1000) {
-            public void onTick(long millisUntilFinished) {
-                //System.out.println(" waiting "+ l.flag1 + " "+l.flag2+" "+l.flag3);
-                //Toast.makeText(HomePage_Activity.this,"Time left : " + millisUntilFinished, Toast.LENGTH_LONG).show();
-            }
+        l.SetCourses();
+        timer(l, 0);
+        l.flag[0] = false;
+        Menu menu = mNavigationView.getMenu();
+        getCoursesAndAddToList(menu);
 
-            public void onFinish() {
-                /*if(!l.flag1){
-                    goto a;
-                }*/
-                swipeRefreshLayout.setRefreshing(false);
-                Toast.makeText(HomePage_Activity.this,"Done", Toast.LENGTH_LONG).show();
-            }
-        }.start();
+        l.SetNotifications();
+        timer(l, 1);
+        l.flag[1] = false;
 
-
-        l.flag1 = false;
-        l.flag2 = false;
-        l.flag3 = false;
+        l.SetGrades();
+        timer(l, 2);
+        l.flag[2] = false;
 
         View v = mNavigationView.getHeaderView(0);
         TextView t = ((TextView) v.findViewById(R.id.textView));
@@ -201,4 +196,25 @@ public class HomePage_Activity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.containerView, new HomePage_Fragment()).commit();
     }
+
+    public boolean timer(final LoadData l, final int i){
+
+        new CountDownTimer(50, 1000) {
+            public void onTick(long millisUntilFinished) {
+
+            }
+            public void onFinish() {
+                if(l.flag[i]){
+                    System.out.println("done \t"+l.ListOfCoursesJSON);
+                    swipeRefreshLayout.setRefreshing(false);
+                    Toast.makeText(HomePage_Activity.this,"Done", Toast.LENGTH_LONG).show();
+                } else {
+                    timer(l, i);
+                    System.out.println("pocessing \t" + l.ListOfCoursesJSON);
+                }
+            }
+        }.start();
+        return true;
+    }
 }
+
