@@ -367,8 +367,10 @@ public class HomePage_Activity extends AppCompatActivity {
         String course = course_code.getText().toString();
 
         final LoadData l = new LoadData();
-
-        l.SetCreateNewThread(title1,description1,course);
+        System.out.println("testing "+title1);
+        System.out.println("testing "+description1);
+        System.out.println("testing"+course);
+        l.SetCreateNewThread(title1, description1, course.toLowerCase());
         timer5(l);
 
         l.flag[8] = false;

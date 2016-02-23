@@ -58,9 +58,10 @@ public class Course_Fragment extends Fragment {
     class MyAdapter extends FragmentPagerAdapter{
 
         public String course = "";
+
         public MyAdapter(FragmentManager fm,String course) {
-            this.course = course;
             super(fm);
+            this.course = course;
         }
 
         /**

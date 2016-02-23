@@ -35,8 +35,8 @@ public class LoadData extends Activity {
     public static String UserInfoJSON;
     public static Context thisContext = null;
 
-    private String ServerURL = "http://10.192.44.203:8000";
-//    private String ServerURL = "http://10.208.20.164:8000/";
+    //private String ServerURL = "http://10.192.44.203:8000";
+    private String ServerURL = "http://10.208.20.164:8000/";
     private String loginRequest;
 
     public void setContext(Context c)

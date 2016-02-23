@@ -66,10 +66,10 @@
     <!-- ALIGNMENT WAGARAH PLEASE DEKH LE  -->
 
     <ListView
-        android:layout_marginTop="120dp"
+        android:layout_below="@+id/description"
         android:layout_gravity="bottom"
         android:id="@+id/listView"
-        android:paddingTop="20dp"
+        android:paddingTop="10dp"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></ListView>

@@ -70,19 +70,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_menu_send"
-<<<<<<< HEAD
-        android:layout_marginLeft="320dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="120dp"
-      />
-=======
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginTop="110dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         />
->>>>>>> 13143661c6245c75d54014786234e8353ca8a497
 
     <ListView
         android:layout_marginTop="200dp"
