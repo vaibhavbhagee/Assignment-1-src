@@ -65,14 +65,15 @@ public class HomePage_Activity extends AppCompatActivity {
 
                 if (menuItem.getItemId() == 1 || menuItem.getItemId() == 2 || menuItem.getItemId() == 3 || menuItem.getItemId() == 4 || menuItem.getItemId() == 5 || menuItem.getItemId() == 6 || menuItem.getItemId() == 7 || menuItem.getItemId() == 8 || menuItem.getItemId() == 9 || menuItem.getItemId() == 0) {
 
-                    Bundle bundle = new Bundle();
-                    bundle.putString("CourseID", p.courses[menuItem.getItemId()].code);
+                    on_loadCourse(p.courses[menuItem.getItemId()].code, menuItem);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("CourseID", p.courses[menuItem.getItemId()].code);
+//
+//                    Course_Fragment newcoursefragment = new Course_Fragment();
+//                    newcoursefragment.setArguments(bundle);
 
-                    Course_Fragment newcoursefragment = new Course_Fragment();
-                    newcoursefragment.setArguments(bundle);
-
-                    FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
-                    xfragmentTransaction.replace(R.id.containerView, newcoursefragment).commit();
+//                    FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
+//                    xfragmentTransaction.replace(R.id.containerView, newcoursefragment).commit();
                 }
 
                 if (menuItem.getItemId() == R.id.nav_notifications) {
@@ -119,8 +120,6 @@ public class HomePage_Activity extends AppCompatActivity {
         });
 
         on_refresh();
-        Menu menu = mNavigationView.getMenu();
-        getCoursesAndAddToList(menu);
 
     }
 
@@ -177,8 +176,7 @@ public class HomePage_Activity extends AppCompatActivity {
         l.SetCourses();
         timer(l, 0);
         l.flag[0] = false;
-        Menu menu = mNavigationView.getMenu();
-        getCoursesAndAddToList(menu);
+
 
         l.SetNotifications();
         timer(l, 1);
@@ -205,16 +203,61 @@ public class HomePage_Activity extends AppCompatActivity {
             }
             public void onFinish() {
                 if(l.flag[i]){
-                    System.out.println("done \t"+l.ListOfCoursesJSON);
+                    //System.out.println("done \t"+l.ListOfCoursesJSON);
+                    if(i==0){
+                        Menu menu = mNavigationView.getMenu();
+                        getCoursesAndAddToList(menu);
+                    }
                     swipeRefreshLayout.setRefreshing(false);
                     Toast.makeText(HomePage_Activity.this,"Done", Toast.LENGTH_LONG).show();
                 } else {
                     timer(l, i);
-                    System.out.println("pocessing \t" + l.ListOfCoursesJSON);
+                    //System.out.println("pocessing \t" + l.ListOfCoursesJSON);
                 }
             }
         }.start();
         return true;
+    }
+    public boolean timer2(final LoadData l, final MenuItem menuItem){
+
+        new CountDownTimer(50, 1000) {
+            public void onTick(long millisUntilFinished) {
+
+            }
+            public void onFinish() {
+                if(l.flag[3] && l.flag[4] && l.flag[5]){
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("CourseID", p.courses[menuItem.getItemId()].code);
+
+                    Course_Fragment newcoursefragment = new Course_Fragment();
+                    newcoursefragment.setArguments(bundle);
+                    System.out.println("done \t"+l.ListCourseThreadsJSON);
+                    FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
+                    xfragmentTransaction.replace(R.id.containerView, newcoursefragment).commit();
+
+                } else {
+                    timer2(l, menuItem);
+                    System.out.println("pocessing \t" + l.flag[3]+" "+l.flag[4]+" "+l.flag[5]+ l.ListOfCoursesJSON);
+                }
+            }
+        }.start();
+        return true;
+    }
+
+    public void on_loadCourse(String s, MenuItem menuItem){
+        final LoadData l = new LoadData();
+
+        l.SetListOfAssignments(s);
+        l.SetCoursegrades(s);
+        l.SetCourseThreads(s);
+
+        timer2(l, menuItem);
+
+        l.flag[3] = false;
+        l.flag[4] = false;
+        l.flag[5] = false;
+
     }
 }
 

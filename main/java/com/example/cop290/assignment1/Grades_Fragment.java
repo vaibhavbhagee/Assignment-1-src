@@ -36,6 +36,7 @@ public class Grades_Fragment extends Fragment {
         LoadData l = new LoadData();
         //Store response of get request for course grades
         String st = l.CourseGradesJSON;
+        System.out.println(l.CourseGradesJSON);
         return st;
     }
 

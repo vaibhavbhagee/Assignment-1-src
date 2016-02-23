@@ -23,7 +23,7 @@ public class ParseCourseThreadsJSON {
         this.year = course_threads.getInt("year");
         this.sem = course_threads.getInt("sem");
 
-        JSONArray threads = new JSONArray(course_threads.getJSONArray("threads"));
+        JSONArray threads = course_threads.getJSONArray("course_threads");
         this.threads = new ParseThreadJSON[threads.length()];
 
         for (int i = 0; i <threads.length() ; i++)

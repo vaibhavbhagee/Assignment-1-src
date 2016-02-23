@@ -18,7 +18,7 @@ public class ParseCourseAssignmentsJSON {
         JSONObject course_assign = new JSONObject(inputJSON);
 
         //create array of course assignments
-        JSONArray ass_array = new JSONArray(course_assign.getJSONArray("assignments"));
+        JSONArray ass_array = course_assign.getJSONArray("assignments");
         this.assignments = new ParseAssignmentJSON[ass_array.length()];
         for (int i = 0; i <ass_array.length() ; i++)
         {

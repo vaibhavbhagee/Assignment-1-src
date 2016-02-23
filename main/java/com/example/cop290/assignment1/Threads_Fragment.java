@@ -19,6 +19,10 @@ import java.util.ArrayList;
  */
 public class Threads_Fragment extends Fragment {
 
+    public Threads_Fragment(){
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,6 +38,7 @@ public class Threads_Fragment extends Fragment {
         LoadData l = new LoadData();
         //Store response of get request for course threads
         String st = l.ListCourseThreadsJSON;
+        System.out.println(st);
         return st;
     }
 

@@ -1,6 +1,7 @@
 package com.example.cop290.assignment1;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 public class Course_Fragment extends Fragment {
 
@@ -100,5 +102,41 @@ public class Course_Fragment extends Fragment {
             return null;
         }
     }
+
+/*    public void on_load(String s){
+        final LoadData l = new LoadData();
+
+        l.SetListOfAssignments(s);
+        timer(l, 3);
+        l.flag[3] = false;
+
+
+        l.SetCoursegrades(s);
+        timer(l, 4);
+        l.flag[4] = false;
+
+        l.SetCourseThreads(s);
+        timer(l, 5);
+        l.flag[5] = false;
+
+    }*/
+
+/*    public boolean timer(final LoadData l, final int i){
+
+        new CountDownTimer(50, 1000) {
+            public void onTick(long millisUntilFinished) {
+
+            }
+            public void onFinish() {
+                if(l.flag[i]){
+                    System.out.println("done \t"+l.ListOfCoursesJSON);
+                } else {
+                    timer(l, i);
+                    System.out.println("pocessing \t" + l.ListOfCoursesJSON);
+                }
+            }
+        }.start();
+        return true;
+    }*/
 
 }

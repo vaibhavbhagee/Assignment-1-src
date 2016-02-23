@@ -20,7 +20,7 @@ import com.android.volley.toolbox.Volley;
  */
 public class LoadData extends Activity {
 
-    public static boolean[] flag = new boolean[10];
+    public static boolean[] flag = new boolean[11];
 
     public static String ListOfCoursesJSON;
     public static String AllNotificationsJSON;
@@ -69,7 +69,7 @@ public class LoadData extends Activity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
-    }
+    }   //0
 
     public void SetNotifications(){
         loginRequest = ServerURL + "/default/notifications.json";
@@ -96,7 +96,7 @@ public class LoadData extends Activity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
-    }
+    }   //1
 
     public void SetGrades(){
         loginRequest = ServerURL + "/default/grades.json";
@@ -125,7 +125,7 @@ public class LoadData extends Activity {
         RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
 
-    }
+    }   //2
 
     public void SetListOfAssignments(String CourseCode) {
         loginRequest = ServerURL + "/courses/course.json/" + CourseCode + "/assignments";
@@ -136,6 +136,7 @@ public class LoadData extends Activity {
                     public void onResponse(String response) {
 
                         ListOfAllAssignmentsJSON = response;
+                        flag[3] = true;
 
                     }
                 },
@@ -152,7 +153,7 @@ public class LoadData extends Activity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
-    }
+    }   //3
 
     public void SetCoursegrades(String CourseCode) {
 
@@ -164,6 +165,7 @@ public class LoadData extends Activity {
                     public void onResponse(String response) {
 
                         CourseGradesJSON = response;
+                        flag[4] = true;
 
                     }
                 },
@@ -180,7 +182,7 @@ public class LoadData extends Activity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
-    }
+    }   //4
 
     public void SetCourseThreads(String CourseCode){
 
@@ -192,6 +194,7 @@ public class LoadData extends Activity {
                     public void onResponse(String response) {
 
                         ListCourseThreadsJSON = response;
+                        flag[5] = true;
 
                     }
                 },
@@ -209,7 +212,7 @@ public class LoadData extends Activity {
         RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
 
-    }
+    }   //5
 
     public void SetInfoOfAssignment(String ass_no){
         loginRequest = ServerURL + "/courses/assignment.json/"+ass_no;
@@ -220,6 +223,7 @@ public class LoadData extends Activity {
                     public void onResponse(String response) {
 
                         InfoOfParticularAssignmentJSON = response;
+                        flag[6] = true;
 
                     }
                 },
@@ -236,7 +240,7 @@ public class LoadData extends Activity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
-    }
+    }   //6
 
     public void SetInfoOfThread(String thread){
         loginRequest = ServerURL + "/threads/thread.json/"+thread;
@@ -247,6 +251,7 @@ public class LoadData extends Activity {
                     public void onResponse(String response) {
 
                         InfoThreadJSON = response;
+                        flag[7] = true;
 
                     }
                 },
@@ -263,7 +268,7 @@ public class LoadData extends Activity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
-    }
+    }       //7
 
     public void SetCreateNewThread(String title, String desc, String coursecode){
         loginRequest = ServerURL + "/threads/new.json?title="+title+"&description="+desc+"&course_code="+coursecode;
@@ -274,6 +279,7 @@ public class LoadData extends Activity {
                     public void onResponse(String response) {
 
                         CreateNewThreadJSON = response;
+                        flag[8] = true;
 
                     }
                 },
@@ -290,7 +296,7 @@ public class LoadData extends Activity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
-    }
+    }   //8
 
     public void SetAddCommentToThread(String thread, String desc){
         loginRequest = ServerURL + "/threads/post_comment.json?thread_id="+thread+"&description="+desc;
@@ -301,6 +307,7 @@ public class LoadData extends Activity {
                     public void onResponse(String response) {
 
                         AddCommentThreadJSON = response;
+                        flag[9] = true;
 
                     }
                 },
@@ -317,7 +324,7 @@ public class LoadData extends Activity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
-    }
+    }   //9
 
     public void ObtainUserInfo(String id){
         loginRequest = ServerURL + "/users/user.json/"+id;
@@ -328,6 +335,7 @@ public class LoadData extends Activity {
                     public void onResponse(String response) {
 
                         UserInfoJSON = response;
+                        flag[10] = true;
 
                     }
                 },
@@ -344,7 +352,7 @@ public class LoadData extends Activity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
-    }
+    }   //10
 
     public void LogoutUser(){
         loginRequest = ServerURL + "/default/logout.json";
