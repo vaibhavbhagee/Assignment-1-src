@@ -18,7 +18,13 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
 import android.view.ViewParent;
+
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.EditText;
+
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,13 +47,14 @@ public class HomePage_Activity extends AppCompatActivity {
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
     SwipeRefreshLayout swipeRefreshLayout;
+    boolean flag_nav;
 
     ParseCourseListJSON p=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        flag_nav = false;
         setContentView(R.layout.activity_home_page_);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -245,9 +252,10 @@ public class HomePage_Activity extends AppCompatActivity {
             public void onFinish() {
                 if(l.flag[i]){
                     //System.out.println("done \t"+l.ListOfCoursesJSON);
-                    if(i==0){
+                    if(!flag_nav && i==0){
                         Menu menu = mNavigationView.getMenu();
                         getCoursesAndAddToList(menu);
+                        flag_nav = true;
                     }
                     swipeRefreshLayout.setRefreshing(false);
                     Toast.makeText(HomePage_Activity.this,"Done", Toast.LENGTH_LONG).show();
@@ -346,15 +354,21 @@ public class HomePage_Activity extends AppCompatActivity {
     public void post_new_thread(View view) {
         //POST NEW THREAD HERE
 
-//        android.support.design.widget.FloatingActionButton f = (android.support.design.widget.FloatingActionButton) view;
 
-        String title = "add title here";
-        String description = "add description here";
-        String course = "add course code gere";
+//        android.support.design.widget.FloatingActionButton f = (android.support.design.widget.FloatingActionButton) view;
+        RelativeLayout parent = (RelativeLayout)view.getParent();
+
+        EditText title = (EditText) parent.findViewById(R.id.title);
+        EditText description = (EditText) parent.findViewById(R.id.description);
+        TextView course_code = (TextView) parent.findViewById(R.id.course_code);
+
+        String title1 = title.getText().toString();
+        String description1 = description.getText().toString();
+        String course = course_code.getText().toString();
 
         final LoadData l = new LoadData();
 
-        l.SetCreateNewThread(title,description,course);
+        l.SetCreateNewThread(title1,description1,course);
         timer5(l);
 
         l.flag[8] = false;
@@ -363,6 +377,16 @@ public class HomePage_Activity extends AppCompatActivity {
         l.flag[5] = false;
 
         Toast.makeText(HomePage_Activity.this,"New thread button working", Toast.LENGTH_LONG).show();
+
+//        RelativeLayout parent = (RelativeLayout)view.getParent();
+//        EditText title = (EditText) parent.findViewById(R.id.title);
+//        EditText description = (EditText) parent.findViewById(R.id.description);
+//        TextView course_code = (TextView) parent.findViewById(R.id.course_code);
+
+        //USE THE PARAMETERS HERE
+
+        Toast.makeText(HomePage_Activity.this,title1, Toast.LENGTH_LONG).show();
+
 
     }
 

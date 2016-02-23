@@ -44,6 +44,9 @@ public class Threads_Fragment extends Fragment {
 
     void populateListView(View view) {
 
+        TextView course_code = (TextView) view.findViewById(R.id.course_code);
+        // TODO : SET THE COURSE CODE HERE
+
         ArrayList<ThreadsRowObject> gl=new ArrayList<ThreadsRowObject>();
         try {
             ParseCourseThreadsJSON p = new ParseCourseThreadsJSON(send_request());
