@@ -159,15 +159,19 @@ public class HomePage_Activity extends AppCompatActivity {
         TextView t = (TextView) rl.findViewById(R.id.slno);
         int slno = Integer.parseInt(t.getText().toString()) - 1;
 
-        // slno GIVES YOU THE INDEX OF THE THREAD
-        // USE THAT GET TIMER WALA FUNCTION TO MOVE TO THE NEXT FRAGMENT
-        // THE LAST TWO STATEMENTS, PUT IT INSIDE THE TIME WALA FUNCTION (ONCE DONE)
+        try {
+            ParseCourseThreadsJSON p = new ParseCourseThreadsJSON(l.ListCourseThreadsJSON);
+            Toast.makeText(HomePage_Activity.this,slno+ " ", Toast.LENGTH_LONG).show();
 
-        Toast.makeText(HomePage_Activity.this,slno+ " ", Toast.LENGTH_LONG).show();
+            l.SetInfoOfThread(p.threads[slno].id + "");
+            timer4(l);
+            l.flag[7] = false;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
 
-        l.SetInfoOfThread(slno + "");
-        timer4(l);
-        l.flag[7] = false;
     }
 
 
@@ -185,22 +189,23 @@ public class HomePage_Activity extends AppCompatActivity {
         TextView t = (TextView) rl.findViewById(R.id.slno);
         int slno = Integer.parseInt(t.getText().toString()) - 1;
 
-        // slno GIVES YOU THE INDEX OF THE THREAD
-        // USE THAT GET TIMER WALA FUNCTION TO MOVE TO THE NEXT FRAGMENT
-        // THE LAST TWO STATEMENTS, PUT IT INSIDE THE TIME WALA FUNCTION (ONCE DONE)
-
         final LoadData l = new LoadData();
         l.setContext(thisContext);
         System.out.println(view.toString()+" ");
 //        view.findViewById(R.id.listView.)
 
-        l.SetInfoOfAssignment(slno+"");
-        timer3(l);
-        l.flag[6] = false;
+        try {
+            ParseCourseAssignmentsJSON p = new ParseCourseAssignmentsJSON(l.ListOfAllAssignmentsJSON);
+            Toast.makeText(HomePage_Activity.this,slno+ " ", Toast.LENGTH_LONG).show();
 
-        //FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        //fragmentTransaction.replace(R.id.containerView, new IndividualAssignment_Fragment()).commit();
-
+            l.SetInfoOfAssignment(p.assignments[slno].id + "");
+            timer3(l);
+            l.flag[6] = false;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
 
