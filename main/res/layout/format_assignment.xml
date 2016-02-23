@@ -20,7 +20,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:paddingTop="20dp"
-        android:textSize="28dp"
+        android:textSize="25dp"
+        android:textStyle="italic"
         android:layout_toRightOf="@+id/slno"
         android:paddingLeft="20dp"
 
@@ -31,7 +32,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
-        android:textSize="28dp"
+        android:textSize="30dp"
         android:paddingBottom="20dp"
         android:layout_toRightOf="@+id/slno"
         android:layout_below="@+id/name"

@@ -28,8 +28,8 @@
         android:layout_below="@+id/thread_created_at"
         android:paddingTop="10dp"
         android:layout_width="wrap_content"
-        android:maxLines="3"
-        android:minLines="3"
+        android:maxLines="2"
+        android:minLines="2"
         android:paddingLeft="20dp"
         android:layout_height="wrap_content" />
 
@@ -71,7 +71,7 @@
         android:src="@android:drawable/ic_menu_send"
         android:layout_marginLeft="320dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="120"
+        android:layout_alignBaseline="@+id/new_comment"
       />
 
     <ListView

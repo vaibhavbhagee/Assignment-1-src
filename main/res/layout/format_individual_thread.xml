@@ -26,9 +26,9 @@
     <TextView
         android:text=" 21 min ago "
         android:id="@+id/time_readable"
-        android:gravity="right"
-        android:paddingRight="20dp"
-        android:paddingTop="35dp"
+        android:paddingLeft="20dp"
+        android:textStyle="italic"
+        android:layout_below="@+id/user"
         android:paddingBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
