@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -113,7 +114,7 @@ public class HomePage_Activity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 on_refresh();
-                swipeRefreshLayout.setRefreshing(false);
+
             }
         });
 
@@ -168,9 +169,29 @@ public class HomePage_Activity extends AppCompatActivity {
 
 
     public void on_refresh(){
-        LoadData l = new LoadData();
+        final LoadData l = new LoadData();
         l.setContext(thisContext);
         l.SetBasicInfoForUser();
+
+        new CountDownTimer(3000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                //System.out.println(" waiting "+ l.flag1 + " "+l.flag2+" "+l.flag3);
+                //Toast.makeText(HomePage_Activity.this,"Time left : " + millisUntilFinished, Toast.LENGTH_LONG).show();
+            }
+
+            public void onFinish() {
+                /*if(!l.flag1){
+                    goto a;
+                }*/
+                swipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(HomePage_Activity.this,"Done", Toast.LENGTH_LONG).show();
+            }
+        }.start();
+
+
+        l.flag1 = false;
+        l.flag2 = false;
+        l.flag3 = false;
 
         View v = mNavigationView.getHeaderView(0);
         TextView t = ((TextView) v.findViewById(R.id.textView));
