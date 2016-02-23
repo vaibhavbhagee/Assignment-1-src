@@ -112,7 +112,6 @@ public class HomePage_Activity extends AppCompatActivity {
                 R.color.google_green,
                 R.color.google_red,
                 R.color.google_yellow);
-        swipeRefreshLayout.setSize(SwipeRefreshLayout.LARGE);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -173,15 +172,6 @@ public class HomePage_Activity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-//        // slno GIVES YOU THE INDEX OF THE THREAD
-//        // USE THAT GET TIMER WALA FUNCTION TO MOVE TO THE NEXT FRAGMENT
-//        // THE LAST TWO STATEMENTS, PUT IT INSIDE THE TIME WALA FUNCTION (ONCE DONE)
-//
-//        Toast.makeText(HomePage_Activity.this,slno+ " ", Toast.LENGTH_LONG).show();
-//
-//        l.SetInfoOfThread(slno + "");
-//        timer4(l);
-//        l.flag[7] = false;
     }
 
 
@@ -199,10 +189,6 @@ public class HomePage_Activity extends AppCompatActivity {
         TextView t = (TextView) rl.findViewById(R.id.slno);
         int slno = Integer.parseInt(t.getText().toString()) - 1;
 
-        // slno GIVES YOU THE INDEX OF THE THREAD
-        // USE THAT GET TIMER WALA FUNCTION TO MOVE TO THE NEXT FRAGMENT
-        // THE LAST TWO STATEMENTS, PUT IT INSIDE THE TIME WALA FUNCTION (ONCE DONE)
-
         final LoadData l = new LoadData();
         l.setContext(thisContext);
         System.out.println(view.toString()+" ");
@@ -211,7 +197,7 @@ public class HomePage_Activity extends AppCompatActivity {
         try {
             ParseCourseAssignmentsJSON p = new ParseCourseAssignmentsJSON(l.ListOfAllAssignmentsJSON);
             Toast.makeText(HomePage_Activity.this,slno+ " ", Toast.LENGTH_LONG).show();
-            
+
             l.SetInfoOfAssignment(p.assignments[slno].id + "");
             timer3(l);
             l.flag[6] = false;
@@ -220,10 +206,6 @@ public class HomePage_Activity extends AppCompatActivity {
         {
             e.printStackTrace();
         }
-
-        //FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        //fragmentTransaction.replace(R.id.containerView, new IndividualAssignment_Fragment()).commit();
-
     }
 
 
@@ -311,13 +293,13 @@ public class HomePage_Activity extends AppCompatActivity {
             }
             public void onFinish() {
                 if(l.flag[6]){
-                    System.out.println("done \t"+l.InfoOfParticularAssignmentJSON);
+                    System.out.println("done \t" + l.InfoOfParticularAssignmentJSON);
                     FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
                     xfragmentTransaction.replace(R.id.containerView, new IndividualAssignment_Fragment()).commit();
 
                 } else {
                     timer3(l);
-                    System.out.println("pocessing \t" + l.flag[6]+l.InfoOfParticularAssignmentJSON);
+                    System.out.println("pocessing \t" + l.flag[6] + l.InfoOfParticularAssignmentJSON);
                 }
             }
         }.start();
@@ -357,6 +339,12 @@ public class HomePage_Activity extends AppCompatActivity {
         l.flag[3] = false;
         l.flag[4] = false;
         l.flag[5] = false;
+
+    }
+
+    public void post_new_thread(View view) {
+        //POST NEW THREAD HERE
+        Toast.makeText(HomePage_Activity.this,"New thread button working", Toast.LENGTH_LONG).show();
 
     }
 }

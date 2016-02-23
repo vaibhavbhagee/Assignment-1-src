@@ -97,7 +97,7 @@ public class IndividualThread_Fragment extends Fragment {
             ParseParticularThreadJSON p = new ParseParticularThreadJSON(send_request());
             for (int i = 0; i <p.comments.length; i++)
             {
-                gl.add(new CommentsRowObject(p.comment_users[i].username,p.comments[i].description,p.times_readable[i]));
+                gl.add(new CommentsRowObject(p.comment_users[i].first_name+p.comment_users[i].last_name,p.comments[i].description,p.times_readable[i]));
             }
 
             thread_user.setText(getUsername(p.thread.user_id));
