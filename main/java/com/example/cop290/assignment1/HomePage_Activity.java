@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -148,6 +149,16 @@ public class HomePage_Activity extends AppCompatActivity {
 
         // NAVIGATE TO INDIVIDUAL THREAD PAGE
 
+        RelativeLayout rl = (RelativeLayout)view;
+        TextView t = (TextView) rl.findViewById(R.id.slno);
+        int slno = Integer.parseInt(t.getText().toString()) - 1;
+
+        // slno GIVES YOU THE INDEX OF THE THREAD
+        // USE THAT GET TIMER WALA FUNCTION TO MOVE TO THE NEXT FRAGMENT
+        // THE LAST TWO STATEMENTS, PUT IT INSIDE THE TIME WALA FUNCTION (ONCE DONE)
+
+        Toast.makeText(HomePage_Activity.this,slno+ " ", Toast.LENGTH_LONG).show();
+
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.containerView, new IndividualThread_Fragment()).commit();
     }
@@ -162,6 +173,13 @@ public class HomePage_Activity extends AppCompatActivity {
 
         //NAVIGATE TO THE ASSIGNMENT PAGE
         //SEND APPROPRIATE REQUESTS
+        RelativeLayout rl = (RelativeLayout)view;
+        TextView t = (TextView) rl.findViewById(R.id.slno);
+        int slno = Integer.parseInt(t.getText().toString()) - 1;
+
+        // slno GIVES YOU THE INDEX OF THE THREAD
+        // USE THAT GET TIMER WALA FUNCTION TO MOVE TO THE NEXT FRAGMENT
+        // THE LAST TWO STATEMENTS, PUT IT INSIDE THE TIME WALA FUNCTION (ONCE DONE)
 
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.containerView, new IndividualAssignment_Fragment()).commit();
