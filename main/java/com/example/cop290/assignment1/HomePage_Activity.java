@@ -209,6 +209,18 @@ public class HomePage_Activity extends AppCompatActivity {
 
         // POST THE THREAD COMMENT HERE
         //SEND APPROPRIATE REQUESTS
+
+        final LoadData l = new LoadData();
+        System.out.println("testing "+comment1);
+        System.out.println("testing "+thread_id1);
+
+        l.SetAddCommentToThread(thread_id1, comment1);
+        timer7(l);
+
+        l.flag[9] = false;
+        l.SetInfoOfThread(thread_id1);
+        timer4(l);
+        l.flag[7] = false;
     }
 
     public void navigate_to_assignment(View view) {
@@ -429,6 +441,27 @@ public class HomePage_Activity extends AppCompatActivity {
                 } else {
                     timer5(l);
                     System.out.println("pocessing \t" + l.flag[8]+l.InfoThreadJSON);
+                }
+            }
+        }.start();
+        return true;
+    }
+
+    public boolean timer7(final LoadData l){
+
+        new CountDownTimer(50, 1000) {
+            public void onTick(long millisUntilFinished) {
+
+            }
+            public void onFinish() {
+                if(l.flag[9]){
+                    System.out.println("done \t"+l.AddCommentThreadJSON);
+//                    FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+//                    fragmentTransaction.replace(R.id.containerView, new IndividualThread_Fragment()).commit();
+
+                } else {
+                    timer7(l);
+                    System.out.println("pocessing \t" + l.flag[9]+l.AddCommentThreadJSON);
                 }
             }
         }.start();

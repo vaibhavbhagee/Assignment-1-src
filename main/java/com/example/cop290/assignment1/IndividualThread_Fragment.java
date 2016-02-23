@@ -107,6 +107,7 @@ public class IndividualThread_Fragment extends Fragment {
             thread_created_at.setText(p.thread.created_at);
             thread_updated_at.setText(p.thread.updated_at);
             //TODO - SET THREAD ID
+            thread_id.setText(p.thread.id+"");
         }
         catch (Exception e)
         {
