@@ -199,6 +199,14 @@ public class HomePage_Activity extends AppCompatActivity {
 
     public void post_thread_comment(View view) {
 
+        RelativeLayout parent = (RelativeLayout)view.getParent();
+
+        EditText comment = (EditText) parent.findViewById(R.id.new_comment);
+        TextView thread_id = (TextView) parent.findViewById(R.id.thread_id);
+
+        String comment1 = comment.getText().toString();
+        String thread_id1 = thread_id.getText().toString();
+
         // POST THE THREAD COMMENT HERE
         //SEND APPROPRIATE REQUESTS
     }
