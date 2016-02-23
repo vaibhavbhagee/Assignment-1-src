@@ -156,10 +156,6 @@ public class HomePage_Activity extends AppCompatActivity {
         System.out.println(view.toString() + " ");
 //        view.findViewById(R.id.listView.)
 
-        l.SetInfoOfThread(1 + "");
-        timer4(l);
-        l.flag[7] = false;
-
         RelativeLayout rl = (RelativeLayout)view;
         TextView t = (TextView) rl.findViewById(R.id.slno);
         int slno = Integer.parseInt(t.getText().toString()) - 1;
@@ -170,8 +166,9 @@ public class HomePage_Activity extends AppCompatActivity {
 
         Toast.makeText(HomePage_Activity.this,slno+ " ", Toast.LENGTH_LONG).show();
 
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.containerView, new IndividualThread_Fragment()).commit();
+        l.SetInfoOfThread(slno + "");
+        timer4(l);
+        l.flag[7] = false;
     }
 
 
@@ -198,7 +195,7 @@ public class HomePage_Activity extends AppCompatActivity {
         System.out.println(view.toString()+" ");
 //        view.findViewById(R.id.listView.)
 
-        l.SetInfoOfAssignment(1+"");
+        l.SetInfoOfAssignment(slno+"");
         timer3(l);
         l.flag[6] = false;
 

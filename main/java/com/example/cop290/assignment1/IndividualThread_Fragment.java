@@ -3,13 +3,19 @@ package com.example.cop290.assignment1;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -43,10 +49,37 @@ public class IndividualThread_Fragment extends Fragment {
         return st;
     }
 
-    String getUsername(int id)
-    {
+    String getUsername(int id) throws JSONException {
         //function to get username by making a get request to /users/user.json/id
-        return "return relevant value";
+        LoadData l = new LoadData();
+        l.ObtainUserInfo(id+"");
+        timer_user_info(l);
+        l.flag[10] = false;
+
+        JSONObject user_json = new JSONObject(l.UserInfoJSON);
+        JSONObject user = new JSONObject(user_json.getJSONObject("user").toString());
+
+        return user.getString("first_name")+user.getString("last_name");
+    }
+
+    public boolean timer_user_info(final LoadData l){
+
+        new CountDownTimer(50, 1000) {
+            public void onTick(long millisUntilFinished) {
+
+            }
+            public void onFinish() {
+                if(l.flag[10]){
+                    //System.out.println("done \t"+l.ListOfCoursesJSON);
+//                    swipeRefreshLayout.setRefreshing(false);
+//                    Toast.makeText(HomePage_Activity.this,"Done", Toast.LENGTH_LONG).show();
+                } else {
+                    timer_user_info(l);
+                    //System.out.println("pocessing \t" + l.ListOfCoursesJSON);
+                }
+            }
+        }.start();
+        return true;
     }
 
     void populateView(View view) {
