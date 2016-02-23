@@ -1,6 +1,6 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent">-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,25 +15,25 @@
         android:paddingLeft="20dp"
         android:paddingBottom="10dp"
         android:textSize="30dp"
-        android:scrollbars="horizontal"
         android:maxLines="1"
         android:maxHeight="80dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="ASS-NAMEHASDBSAHDHJSDKSAB"
         android:ellipsize="marquee"
         />
 
+
     <TextView
         android:id="@+id/assignment_description"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:maxLines="10"
+        android:layout_height="wrap_content"
         android:paddingTop="25dp"
+        android:scrollbars="vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingBottom="20dp"
-        android:scrollbars="vertical"
+        android:maxLines="10"
         android:layout_below="@+id/assignment_name"
         android:text="Description of assignemtn asjdiasb fisbhifedhi fdh bdif bd cfdfndbfijdhfiehfid hjd jf djkn djbidjibvedjkfdbvijfbdjdfhn ehvudh vidfvjihie veb jiebvijebvijebvjibnfebnfiedjbbedfbejivbejifbef ebnjinvjpfejvbnl jbenfklebf sjfbnei;f endfjkl bjkfndkfnjnknej fndjfefjelfjkfeb fjbesjovnjv dkjvne;fjenf elkfjnefkjenfk ejfnejk vbejv dfndbfijdhfiehfid hjd jf djkn djbidjibvedjkfdbvijfbdjdfhn ehvudh vidfvjihie veb jiebvijebvijebvjibnfebnfiedjbbedfbejivbejifbef ebnjinvjpfejvbnl jbenfklebf sjfbnei;f endfjkl bjkfndkfnjnknej fndjfefjelfjkfeb fjbesjovnjv dkjvne;fjenf elkfjnefkjenfk ejfnejk vbejvdfndbfijdhfiehfid hjd jf djkn djbidjibvedjkfdbvijfbdjdfhn ehvudh vidfvjihie veb jiebvijebvijebvjibnfebnfiedjbbedfbejivbejifbef ebnjinvjpfejvbnl jbenfklebf sjfbnei;f endfjkl bjkfndkfnjnknej fndjfefjelfjkfeb fjbesjovnjv dkjvne;fjenf elkfjnefkjenfk ejfnejk vbejvdfndbfijdhfiehfid hjd jf djkn djbidjibvedjkfdbvijfbdjdfhn ehvudh vidfvjihie veb jiebvijebvijebvjibnfebnfiedjbbedfbejivbejifbef ebnjinvjpfejvbnl jbenfklebf sjfbnei;f endfjkl bjkfndkfnjnknej fndjfefjelfjkfeb fjbesjovnjv dkjvne;fjenf elkfjnefkjenfk ejfnejk vbejv" />
 
@@ -116,7 +116,7 @@
 
 
     <TextView
-        android:text="===============================\nPrevious Submissions"
+        android:text="==============================\nPrevious Submissions"
         android:layout_below="@+id/latedays"
         android:paddingTop="20dp"
         android:paddingLeft="20dp"
@@ -136,4 +136,6 @@
     <!-- Yaar.... Dekh le, pak chuka hun -->
 
 </RelativeLayout>
+<!--
 </ScrollView>
+-->

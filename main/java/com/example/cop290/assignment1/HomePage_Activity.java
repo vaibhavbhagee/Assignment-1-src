@@ -14,6 +14,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -119,6 +120,7 @@ public class HomePage_Activity extends AppCompatActivity {
             }
         });
 
+       /* ((TextView)findViewById(R.id.assignment_name)).setMovementMethod(new ScrollingMovementMethod());*/
         on_refresh();
 
     }
@@ -148,9 +150,17 @@ public class HomePage_Activity extends AppCompatActivity {
 
         // NAVIGATE TO INDIVIDUAL THREAD PAGE
 
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.containerView, new IndividualThread_Fragment()).commit();
+        final LoadData l = new LoadData();
+        l.setContext(thisContext);
+        System.out.println(view.toString() + " ");
+//        view.findViewById(R.id.listView.)
+
+        l.SetInfoOfThread(1 + "");
+        timer4(l);
+        l.flag[7] = false;
+
     }
+
 
     public void post_thread_comment(View view) {
 
@@ -163,8 +173,17 @@ public class HomePage_Activity extends AppCompatActivity {
         //NAVIGATE TO THE ASSIGNMENT PAGE
         //SEND APPROPRIATE REQUESTS
 
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.containerView, new IndividualAssignment_Fragment()).commit();
+        final LoadData l = new LoadData();
+        l.setContext(thisContext);
+        System.out.println(view.toString()+" ");
+//        view.findViewById(R.id.listView.)
+
+        l.SetInfoOfAssignment(1+"");
+        timer3(l);
+        l.flag[6] = false;
+
+        //FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        //fragmentTransaction.replace(R.id.containerView, new IndividualAssignment_Fragment()).commit();
 
     }
 
@@ -232,13 +251,55 @@ public class HomePage_Activity extends AppCompatActivity {
 
                     Course_Fragment newcoursefragment = new Course_Fragment();
                     newcoursefragment.setArguments(bundle);
-                    System.out.println("done \t"+l.ListCourseThreadsJSON);
+                    System.out.println("done \t" + l.ListCourseThreadsJSON);
                     FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
                     xfragmentTransaction.replace(R.id.containerView, newcoursefragment).commit();
 
                 } else {
                     timer2(l, menuItem);
-                    System.out.println("pocessing \t" + l.flag[3]+" "+l.flag[4]+" "+l.flag[5]+ l.ListOfCoursesJSON);
+                    System.out.println("pocessing \t" + l.flag[3] + " " + l.flag[4] + " " + l.flag[5] + l.ListOfCoursesJSON);
+                }
+            }
+        }.start();
+        return true;
+    }
+
+    public boolean timer3(final LoadData l){
+
+        new CountDownTimer(50, 1000) {
+            public void onTick(long millisUntilFinished) {
+
+            }
+            public void onFinish() {
+                if(l.flag[6]){
+                    System.out.println("done \t"+l.InfoOfParticularAssignmentJSON);
+                    FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
+                    xfragmentTransaction.replace(R.id.containerView, new IndividualAssignment_Fragment()).commit();
+
+                } else {
+                    timer3(l);
+                    System.out.println("pocessing \t" + l.flag[6]+l.InfoOfParticularAssignmentJSON);
+                }
+            }
+        }.start();
+        return true;
+    }
+
+    public boolean timer4(final LoadData l){
+
+        new CountDownTimer(50, 1000) {
+            public void onTick(long millisUntilFinished) {
+
+            }
+            public void onFinish() {
+                if(l.flag[7]){
+                    System.out.println("done \t"+l.InfoThreadJSON);
+                    FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.containerView, new IndividualThread_Fragment()).commit();
+
+                } else {
+                    timer4(l);
+                    System.out.println("pocessing \t" + l.flag[7]+l.InfoThreadJSON);
                 }
             }
         }.start();

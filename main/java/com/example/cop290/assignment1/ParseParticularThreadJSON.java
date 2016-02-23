@@ -19,16 +19,20 @@ public class ParseParticularThreadJSON {
         JSONObject pthread = new JSONObject(inputJSON);
 
         this.course = new ParseCourseJSON(pthread.getJSONObject("course").toString());
-        this.times_readable = (String[])(pthread.get("times_readable"));
+        JSONArray ja = (JSONArray)(pthread.get("times_readable"));
+        this.times_readable = new String[ja.length()];
+        for (int i = 0; i <this.times_readable.length ; i++) {
+            this.times_readable[i] = ja.getString(i);
+        }
         //create array of comment objects
-        JSONArray comments = new JSONArray(pthread.getJSONArray("comments"));
+        JSONArray comments = pthread.getJSONArray("comments");
         this.comments = new ParseCommentJSON[comments.length()];
         for (int j = 0; j <comments.length() ; j++)
         {
             this.comments[j] = new ParseCommentJSON(comments.get(j).toString());
         }
         this.thread = new ParseThreadJSON(pthread.getJSONObject("thread").toString());
-        JSONArray comment_users = new JSONArray(pthread.getJSONArray("comment_users"));
+        JSONArray comment_users = pthread.getJSONArray("comment_users");
         this.comment_users = new ParseUserJSON[comment_users.length()];
         for (int i = 0; i <comment_users.length() ; i++)
         {

@@ -10,6 +10,7 @@ import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -143,7 +144,7 @@ public class Notification_Fragment extends Fragment {
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.format_notification, parent, false);
             }
-            LinearLayout layout = (LinearLayout) convertView.findViewById((R.id.layout));
+            RelativeLayout layout = (RelativeLayout) convertView.findViewById((R.id.layout));
             TextView slno = (TextView) convertView.findViewById(R.id.slno);
             WebView notification = (WebView) convertView.findViewById(R.id.notification);
             TextView time = (TextView) convertView.findViewById(R.id.time);

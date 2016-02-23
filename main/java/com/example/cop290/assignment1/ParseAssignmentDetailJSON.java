@@ -20,7 +20,7 @@ public class ParseAssignmentDetailJSON {
         this.assignment = new ParseAssignmentJSON(ass_detail_json.getJSONObject("assignment").toString());
         this.registered = new ParseRegisteredJSON(ass_detail_json.getJSONObject("registered").toString());
         //create submissions array
-        JSONArray submissions = new JSONArray(ass_detail_json.getJSONArray("submissions"));
+        JSONArray submissions = ass_detail_json.getJSONArray("submissions");
         this.submissions = new ParseSubmissionJSON[submissions.length()];
 
         for (int i = 0; i <submissions.length() ; i++)

@@ -105,6 +105,11 @@ public class IndividualThread_Fragment extends Fragment {
 
             //SET ALL THE PARAMETERS HERE
 
+            user_name.setText(user.user_name);
+            comment.setText(user.comment);
+            time_readable.setText(user.time_readable);
+
+
             return convertView;
         }
     }

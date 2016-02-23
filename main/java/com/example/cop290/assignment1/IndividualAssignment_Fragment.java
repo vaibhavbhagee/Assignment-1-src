@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
@@ -34,6 +39,9 @@ public class IndividualAssignment_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_individual_assignment_, container, false);
         populateView(view);
 
+        TextView textview= (TextView) view.findViewById (R.id.assignment_description);
+        textview.setMovementMethod(new ScrollingMovementMethod());
+
         return view;
     }
 
@@ -43,6 +51,72 @@ public class IndividualAssignment_Fragment extends Fragment {
         LoadData l = new LoadData();
         //Store response of get request for particular assignments
         String st = l.InfoOfParticularAssignmentJSON;
+        return st;
+    }
+
+    String ret_duration(String inputDate) throws ParseException {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = (Date)formatter.parse(inputDate);
+        Date d = new Date();
+        long getmills = date.getTime()-d.getTime();
+        long days = getmills/86400000;
+        long days_residue = getmills%86400000;
+        long hrs = days_residue/3600000;
+        long hr_residue = getmills%3600000;
+        long min = hr_residue/60000;
+
+        String st = "";
+        if(days !=0)
+        {
+            if (hrs !=0)
+            {
+                if (min !=0)
+                {
+                    st+=days+" days, "+hrs+" hrs, "+min+" minutes";
+                }
+                else
+                {
+                    st+=days+" days, "+hrs+" hrs ";
+                }
+            }
+            else
+            {
+                if (min !=0)
+                {
+                    st+=days+" days, "+min+" minutes";
+                }
+                else
+                {
+                    st+=days+" days";
+                }
+            }
+        }
+        else
+        {
+            if (hrs !=0)
+            {
+                if (min !=0)
+                {
+                    st+=hrs+" hrs, "+min+" minutes";
+                }
+                else
+                {
+                    st+=hrs+" hrs ";
+                }
+            }
+            else
+            {
+                if (min !=0)
+                {
+                    st+=min+" minutes";
+                }
+                else
+                {
+                    st+="";
+                }
+            }
+        }
+
         return st;
     }
 
@@ -71,8 +145,8 @@ public class IndividualAssignment_Fragment extends Fragment {
             assignment_description.setText(Html.fromHtml(p.assignment.description));
             assignment_created_at.setText(p.assignment.created_at);
             assignment_deadline.setText(p.assignment.deadline);
-//            assignment_time_remaining.setText(p.assignment.);
-            assignment_late_days.setText(p.assignment.late_days_allowed);
+            assignment_time_remaining.setText(ret_duration(p.assignment.deadline));
+            assignment_late_days.setText(p.assignment.late_days_allowed+"");
         }
         catch(Exception e)
         {
