@@ -66,7 +66,7 @@ public class Login_Activity extends AppCompatActivity {
 
     public void login()
     {
-        final String ServerURL = "http://10.192.11.155:8000";
+        final String ServerURL = "http://10.192.44.203:8000";
 
         final String loginString1 = "/default/login.json?userid=";
         final String loginString2 = "&password=";
@@ -113,7 +113,7 @@ public class Login_Activity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("Login"+ "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
 
                         //Toast.makeText(Main4Activity.this, "Server Error. Please check your internet connection.", Toast.LENGTH_LONG).show();
                     }
@@ -121,20 +121,7 @@ public class Login_Activity extends AppCompatActivity {
 
         };
 
-        /*CookieManager cookieManager = new CookieManager();
-        URI uri = URI.create("http://10.192.44.203:8000/default/login.json?userid=cs1140485&password=shreyan");
-        cookieManager.getCookieStore().add(uri,null);*/
-        /*HttpCookie;
-                NetworkResponse;
-        JsonObjectRequest
 
-        DefaultHttpClient httpclient = new DefaultHttpClient();
-
-        CookieStore cookieStore = new BasicCookieStore();
-        httpclient.setCookieStore( cookieStore );
-
-        HttpStack httpStack = new HttpClientStack( httpclient );
-        RequestQueue requestQueue = Volley.newRequestQueue( context, httpStack  );*/
 
         //Manages the queue of requests
         RequestQueue requestQueue = Volley.newRequestQueue(thisContext);

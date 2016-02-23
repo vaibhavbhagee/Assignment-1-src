@@ -32,7 +32,7 @@ public class LoadData extends Activity {
     public static String UserInfoJSON;
     public static Context thisContext = null;
 
-    private String ServerURL = "http://10.192.11.155:8000";
+    private String ServerURL = "http://10.192.44.203:8000";
     private String loginRequest;
 
     public void setContext(Context c)
@@ -40,24 +40,22 @@ public class LoadData extends Activity {
         thisContext = c;
     }
 
-    public void SetBasicInfoForUser()
-    {
+    public void SetBasicInfoForUser() {
         loginRequest = ServerURL + "/courses/list.json";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest,
                 new Response.Listener<String>() {
                     @Override
                     //On valid response
                     public void onResponse(String response) {
 
                         ListOfCoursesJSON = response;
-
                     }
                 },
                 //Launched when server return error
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("basicuserinfoKat gaya tera behenchod. Aise kata:" + error.toString()).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -66,34 +64,37 @@ public class LoadData extends Activity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
+    }
 
+    void SetNotifications(){
         loginRequest = ServerURL + "/default/notifications.json";
-        stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest,
                 new Response.Listener<String>() {
                     @Override
                     //On valid response
                     public void onResponse(String response) {
 
                         AllNotificationsJSON = response;
-
                     }
                 },
                 //Launched when server return error
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("notifsKat gaya tera behenchod. Aise kata:" + error.toString()).setNeutralButton("Close", null).show();
 
                     }
                 }) {
 
         };
 
-        requestQueue = Volley.newRequestQueue(thisContext);
+        RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
+    }
 
+    void SetGrades(){
         loginRequest = ServerURL + "/default/grades.json";
-        stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
                 new Response.Listener<String>() {
                     @Override
                     //On valid response
@@ -107,23 +108,22 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "gradesKat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
 
                     }
                 }) {
 
         };
 
-        requestQueue = Volley.newRequestQueue(thisContext);
+        RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
 
     }
 
 
-    public void SetCourseInfoForUser(String CourseCode)
-    {
-        loginRequest = ServerURL + "/courses/course.json/"+CourseCode+"/assignments";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
+    public void SetListOfAssignments(String CourseCode) {
+        loginRequest = ServerURL + "/courses/course.json/" + CourseCode + "/assignments";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest,
                 new Response.Listener<String>() {
                     @Override
                     //On valid response
@@ -137,7 +137,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("assKat gaya tera behenchod. Aise kata:" + error.toString()).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -146,9 +146,12 @@ public class LoadData extends Activity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
+    }
 
-        loginRequest = ServerURL + "/courses/course.json/"+CourseCode+"/grades";
-        stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
+    void SetCoursegrades(String CourseCode) {
+
+        loginRequest = ServerURL + "/courses/course.json/" + CourseCode + "/grades";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest,
                 new Response.Listener<String>() {
                     @Override
                     //On valid response
@@ -162,19 +165,21 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("coursegradesKat gaya tera behenchod. Aise kata:" + error.toString()).setNeutralButton("Close", null).show();
 
                     }
                 }) {
 
         };
 
-        requestQueue = Volley.newRequestQueue(thisContext);
+        RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
+    }
 
+    void SetCourseThreads(String CourseCode){
 
         loginRequest = ServerURL + "/courses/course.json/"+CourseCode+"/threads";
-        stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
                 new Response.Listener<String>() {
                     @Override
                     //On valid response
@@ -188,14 +193,14 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "theaddsKat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
 
                     }
                 }) {
 
         };
 
-        requestQueue = Volley.newRequestQueue(thisContext);
+        RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
         requestQueue.add(stringRequest);
 
     }
@@ -218,7 +223,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "onesasinfoKat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -247,7 +252,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "infothreadKat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -276,7 +281,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "newthreadKat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -305,7 +310,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "commentKat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -334,7 +339,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "obtainuserKat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
 
                     }
                 }) {
