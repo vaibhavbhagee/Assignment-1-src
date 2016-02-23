@@ -173,15 +173,6 @@ public class HomePage_Activity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-//        // slno GIVES YOU THE INDEX OF THE THREAD
-//        // USE THAT GET TIMER WALA FUNCTION TO MOVE TO THE NEXT FRAGMENT
-//        // THE LAST TWO STATEMENTS, PUT IT INSIDE THE TIME WALA FUNCTION (ONCE DONE)
-//
-//        Toast.makeText(HomePage_Activity.this,slno+ " ", Toast.LENGTH_LONG).show();
-//
-//        l.SetInfoOfThread(slno + "");
-//        timer4(l);
-//        l.flag[7] = false;
     }
 
 
@@ -199,10 +190,6 @@ public class HomePage_Activity extends AppCompatActivity {
         TextView t = (TextView) rl.findViewById(R.id.slno);
         int slno = Integer.parseInt(t.getText().toString()) - 1;
 
-        // slno GIVES YOU THE INDEX OF THE THREAD
-        // USE THAT GET TIMER WALA FUNCTION TO MOVE TO THE NEXT FRAGMENT
-        // THE LAST TWO STATEMENTS, PUT IT INSIDE THE TIME WALA FUNCTION (ONCE DONE)
-
         final LoadData l = new LoadData();
         l.setContext(thisContext);
         System.out.println(view.toString()+" ");
@@ -211,7 +198,7 @@ public class HomePage_Activity extends AppCompatActivity {
         try {
             ParseCourseAssignmentsJSON p = new ParseCourseAssignmentsJSON(l.ListOfAllAssignmentsJSON);
             Toast.makeText(HomePage_Activity.this,slno+ " ", Toast.LENGTH_LONG).show();
-            
+
             l.SetInfoOfAssignment(p.assignments[slno].id + "");
             timer3(l);
             l.flag[6] = false;
@@ -220,10 +207,6 @@ public class HomePage_Activity extends AppCompatActivity {
         {
             e.printStackTrace();
         }
-
-        //FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        //fragmentTransaction.replace(R.id.containerView, new IndividualAssignment_Fragment()).commit();
-
     }
 
 
