@@ -20,7 +20,7 @@ public class ParseCourseGradesJSON {
 
         this.registered = new ParseRegisteredJSON(course_grades.getJSONObject("registered").toString());
         this.course = new ParseCourseJSON(course_grades.getJSONObject("course").toString());
-        JSONArray grades = new JSONArray(course_grades.getJSONArray("grades"));
+        JSONArray grades = course_grades.getJSONArray("grades");
         this.grades = new ParseGradeJSON[grades.length()];
         for (int i = 0; i <this.grades.length ; i++)
         {

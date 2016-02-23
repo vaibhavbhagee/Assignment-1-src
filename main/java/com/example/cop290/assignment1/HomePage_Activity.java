@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -64,14 +65,15 @@ public class HomePage_Activity extends AppCompatActivity {
 
                 if (menuItem.getItemId() == 1 || menuItem.getItemId() == 2 || menuItem.getItemId() == 3 || menuItem.getItemId() == 4 || menuItem.getItemId() == 5 || menuItem.getItemId() == 6 || menuItem.getItemId() == 7 || menuItem.getItemId() == 8 || menuItem.getItemId() == 9 || menuItem.getItemId() == 0) {
 
-                    Bundle bundle = new Bundle();
-                    bundle.putString("CourseID", p.courses[menuItem.getItemId()].code);
+                    on_loadCourse(p.courses[menuItem.getItemId()].code, menuItem);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("CourseID", p.courses[menuItem.getItemId()].code);
+//
+//                    Course_Fragment newcoursefragment = new Course_Fragment();
+//                    newcoursefragment.setArguments(bundle);
 
-                    Course_Fragment newcoursefragment = new Course_Fragment();
-                    newcoursefragment.setArguments(bundle);
-
-                    FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
-                    xfragmentTransaction.replace(R.id.containerView, newcoursefragment).commit();
+//                    FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
+//                    xfragmentTransaction.replace(R.id.containerView, newcoursefragment).commit();
                 }
 
                 if (menuItem.getItemId() == R.id.nav_notifications) {
@@ -99,7 +101,7 @@ public class HomePage_Activity extends AppCompatActivity {
 
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout, toolbar,R.string.app_name, R.string.app_name);
-        on_refresh();
+
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
@@ -113,12 +115,12 @@ public class HomePage_Activity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 on_refresh();
-                swipeRefreshLayout.setRefreshing(false);
+
             }
         });
 
-        Menu menu = mNavigationView.getMenu();
-        getCoursesAndAddToList(menu);
+        on_refresh();
+
     }
 
     void getCoursesAndAddToList(Menu menu)
@@ -168,9 +170,21 @@ public class HomePage_Activity extends AppCompatActivity {
 
 
     public void on_refresh(){
-        LoadData l = new LoadData();
+        final LoadData l = new LoadData();
         l.setContext(thisContext);
-        l.SetBasicInfoForUser();
+
+        l.SetCourses();
+        timer(l, 0);
+        l.flag[0] = false;
+
+
+        l.SetNotifications();
+        timer(l, 1);
+        l.flag[1] = false;
+
+        l.SetGrades();
+        timer(l, 2);
+        l.flag[2] = false;
 
         View v = mNavigationView.getHeaderView(0);
         TextView t = ((TextView) v.findViewById(R.id.textView));
@@ -180,4 +194,70 @@ public class HomePage_Activity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.containerView, new HomePage_Fragment()).commit();
     }
+
+    public boolean timer(final LoadData l, final int i){
+
+        new CountDownTimer(50, 1000) {
+            public void onTick(long millisUntilFinished) {
+
+            }
+            public void onFinish() {
+                if(l.flag[i]){
+                    //System.out.println("done \t"+l.ListOfCoursesJSON);
+                    if(i==0){
+                        Menu menu = mNavigationView.getMenu();
+                        getCoursesAndAddToList(menu);
+                    }
+                    swipeRefreshLayout.setRefreshing(false);
+                    Toast.makeText(HomePage_Activity.this,"Done", Toast.LENGTH_LONG).show();
+                } else {
+                    timer(l, i);
+                    //System.out.println("pocessing \t" + l.ListOfCoursesJSON);
+                }
+            }
+        }.start();
+        return true;
+    }
+    public boolean timer2(final LoadData l, final MenuItem menuItem){
+
+        new CountDownTimer(50, 1000) {
+            public void onTick(long millisUntilFinished) {
+
+            }
+            public void onFinish() {
+                if(l.flag[3] && l.flag[4] && l.flag[5]){
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("CourseID", p.courses[menuItem.getItemId()].code);
+
+                    Course_Fragment newcoursefragment = new Course_Fragment();
+                    newcoursefragment.setArguments(bundle);
+                    System.out.println("done \t"+l.ListCourseThreadsJSON);
+                    FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
+                    xfragmentTransaction.replace(R.id.containerView, newcoursefragment).commit();
+
+                } else {
+                    timer2(l, menuItem);
+                    System.out.println("pocessing \t" + l.flag[3]+" "+l.flag[4]+" "+l.flag[5]+ l.ListOfCoursesJSON);
+                }
+            }
+        }.start();
+        return true;
+    }
+
+    public void on_loadCourse(String s, MenuItem menuItem){
+        final LoadData l = new LoadData();
+
+        l.SetListOfAssignments(s);
+        l.SetCoursegrades(s);
+        l.SetCourseThreads(s);
+
+        timer2(l, menuItem);
+
+        l.flag[3] = false;
+        l.flag[4] = false;
+        l.flag[5] = false;
+
+    }
 }
+
