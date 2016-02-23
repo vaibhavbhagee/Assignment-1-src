@@ -18,6 +18,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -344,8 +345,73 @@ public class HomePage_Activity extends AppCompatActivity {
 
     public void post_new_thread(View view) {
         //POST NEW THREAD HERE
+
+//        android.support.design.widget.FloatingActionButton f = (android.support.design.widget.FloatingActionButton) view;
+
+        String title = "add title here";
+        String description = "add description here";
+        String course = "add course code gere";
+
+        final LoadData l = new LoadData();
+
+        l.SetCreateNewThread(title,description,course);
+        timer5(l);
+
+        l.flag[8] = false;
+        l.SetCourseThreads(course);
+        timer6(l,course);
+        l.flag[5] = false;
+
         Toast.makeText(HomePage_Activity.this,"New thread button working", Toast.LENGTH_LONG).show();
 
+    }
+
+    public boolean timer5(final LoadData l){
+
+        new CountDownTimer(50, 1000) {
+            public void onTick(long millisUntilFinished) {
+
+            }
+            public void onFinish() {
+                if(l.flag[8]){
+                    System.out.println("done \t"+l.InfoThreadJSON);
+//                    FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+//                    fragmentTransaction.replace(R.id.containerView, new IndividualThread_Fragment()).commit();
+
+                } else {
+                    timer5(l);
+                    System.out.println("pocessing \t" + l.flag[8]+l.InfoThreadJSON);
+                }
+            }
+        }.start();
+        return true;
+    }
+
+    public boolean timer6(final LoadData l,final String course_id){
+
+        new CountDownTimer(50, 1000) {
+            public void onTick(long millisUntilFinished) {
+
+            }
+            public void onFinish() {
+                if(l.flag[5]){
+                    System.out.println("done \t"+l.InfoThreadJSON);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("CourseID", course_id);
+
+                    Course_Fragment newcoursefragment = new Course_Fragment();
+                    newcoursefragment.setArguments(bundle);
+                    System.out.println("done \t" + l.ListCourseThreadsJSON);
+                    FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
+                    xfragmentTransaction.replace(R.id.containerView, newcoursefragment).commit();
+
+                } else {
+                    timer6(l,course_id);
+                    System.out.println("pocessing \t" + l.flag[5]+l.InfoThreadJSON);
+                }
+            }
+        }.start();
+        return true;
     }
 }
 
