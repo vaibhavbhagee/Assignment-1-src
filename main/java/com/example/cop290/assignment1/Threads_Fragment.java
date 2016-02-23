@@ -19,8 +19,9 @@ import java.util.ArrayList;
  */
 public class Threads_Fragment extends Fragment {
 
-    public Threads_Fragment(){
-
+    public  String coursecode;
+    public Threads_Fragment(String course){
+        this.coursecode = course;
     }
 
     @Override
@@ -46,6 +47,7 @@ public class Threads_Fragment extends Fragment {
 
         TextView course_code = (TextView) view.findViewById(R.id.course_code);
         // TODO : SET THE COURSE CODE HERE
+        course_code.setText(this.coursecode);
 
         ArrayList<ThreadsRowObject> gl=new ArrayList<ThreadsRowObject>();
         try {
