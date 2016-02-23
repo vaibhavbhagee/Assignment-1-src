@@ -33,7 +33,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingBottom="20dp"
-        android:maxLines="10"
+        android:maxLines="7"
         android:layout_below="@+id/assignment_name"
         android:text="Description of assignemtn asjdiasb fisbhifedhi fdh bdif bd cfdfndbfijdhfiehfid hjd jf djkn djbidjibvedjkfdbvijfbdjdfhn ehvudh vidfvjihie veb jiebvijebvijebvjibnfebnfiedjbbedfbejivbejifbef ebnjinvjpfejvbnl jbenfklebf sjfbnei;f endfjkl bjkfndkfnjnknej fndjfefjelfjkfeb fjbesjovnjv dkjvne;fjenf elkfjnefkjenfk ejfnejk vbejv dfndbfijdhfiehfid hjd jf djkn djbidjibvedjkfdbvijfbdjdfhn ehvudh vidfvjihie veb jiebvijebvijebvjibnfebnfiedjbbedfbejivbejifbef ebnjinvjpfejvbnl jbenfklebf sjfbnei;f endfjkl bjkfndkfnjnknej fndjfefjelfjkfeb fjbesjovnjv dkjvne;fjenf elkfjnefkjenfk ejfnejk vbejvdfndbfijdhfiehfid hjd jf djkn djbidjibvedjkfdbvijfbdjdfhn ehvudh vidfvjihie veb jiebvijebvijebvjibnfebnfiedjbbedfbejivbejifbef ebnjinvjpfejvbnl jbenfklebf sjfbnei;f endfjkl bjkfndkfnjnknej fndjfefjelfjkfeb fjbesjovnjv dkjvne;fjenf elkfjnefkjenfk ejfnejk vbejvdfndbfijdhfiehfid hjd jf djkn djbidjibvedjkfdbvijfbdjdfhn ehvudh vidfvjihie veb jiebvijebvijebvjibnfebnfiedjbbedfbejivbejifbef ebnjinvjpfejvbnl jbenfklebf sjfbnei;f endfjkl bjkfndkfnjnknej fndjfefjelfjkfeb fjbesjovnjv dkjvne;fjenf elkfjnefkjenfk ejfnejk vbejv" />
 
@@ -97,7 +97,7 @@
     <TextView
         android:layout_below="@+id/assignment_time_remaining"
         android:paddingLeft="20dp"
-        android:paddingTop="20dp"
+        android:paddingTop="0dp"
         android:textSize="15dp"
         android:text="Late Days Allowed: "
         android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
         android:textSize="15dp"
         android:textStyle="bold"
         android:layout_below="@+id/assignment_time_remaining"
-        android:paddingTop="20dp"
+        android:paddingTop="0dp"
         android:id="@+id/assignment_late_days"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -118,7 +118,7 @@
     <TextView
         android:text="==============================\nPrevious Submissions"
         android:layout_below="@+id/latedays"
-        android:paddingTop="20dp"
+        android:paddingTop="0dp"
         android:paddingLeft="20dp"
         android:textSize="20dp"
         android:textColor="#72B"
@@ -131,7 +131,7 @@
         android:paddingRight="20dp"
         android:layout_below="@+id/prevsub"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="match_parent"></ListView>
 
     <!-- Yaar.... Dekh le, pak chuka hun -->
 
