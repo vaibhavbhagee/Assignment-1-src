@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:text="user"
         android:id="@+id/user"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:paddingTop="20dp"
+        android:paddingLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
         android:text=" comment "
         android:id="@+id/comment"
-        android:layout_width="wrap_content"
+        android:layout_below="@+id/time_readable"
+        android:layout_width="match_parent"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:maxHeight="50dp"
         android:layout_height="wrap_content" />
     <!-- Get the time readable below the the comment and
          make the formatting proper-->
     <TextView
         android:text=" 21 min ago "
         android:id="@+id/time_readable"
-        android:layout_width="wrap_content"
+        android:gravity="right"
+        android:paddingRight="20dp"
+        android:paddingTop="35dp"
+        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-</LinearLayout>
+</RelativeLayout>
