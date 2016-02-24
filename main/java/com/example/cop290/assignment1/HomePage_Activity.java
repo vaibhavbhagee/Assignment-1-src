@@ -117,7 +117,8 @@ public class HomePage_Activity extends AppCompatActivity {
                 if (menuItem.getItemId() == R.id.nav_logout) {
 
 
-                    // Yahaan Log Out kar dena
+                    LoadData l = new LoadData();
+                    l.LogoutUser();
 
                     Intent intent = new Intent(thisContext, Login_Activity.class);
                     startActivity(intent);
@@ -240,11 +241,9 @@ public class HomePage_Activity extends AppCompatActivity {
         System.out.println("testing " + description1);
         System.out.println("testing" + course);
 
-        l.SetCreateNewThread(title1, description1, course.toLowerCase());
-        timer5(0, l, course);
+        l.SetCreateNewThread(title1, description1, course.toLowerCase().substring(0,6));
+        timer5(0, l, course.toLowerCase().substring(0,6));
         l.flag[8] = false;
-
-        Toast.makeText(HomePage_Activity.this,"New thread posted", Toast.LENGTH_LONG).show();
 
     }
 
@@ -443,6 +442,7 @@ public class HomePage_Activity extends AppCompatActivity {
                     Toast.makeText(HomePage_Activity.this,"Connection Timed Out", Toast.LENGTH_LONG).show();
                 }
                 else if(l.flag[8]){
+                    Toast.makeText(HomePage_Activity.this,"New thread posted", Toast.LENGTH_LONG).show();
                     l.SetCourseThreads(course);
                     timer6(0,l,course);
                     l.flag[5] = false;
