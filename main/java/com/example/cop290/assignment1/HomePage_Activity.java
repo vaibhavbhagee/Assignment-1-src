@@ -1,8 +1,10 @@
 package com.example.cop290.assignment1;
 
 import android.app.Fragment;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.NavigationView;
@@ -14,6 +16,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -153,7 +156,8 @@ public class HomePage_Activity extends AppCompatActivity {
 
             for(int i=0;i<course_list_json.courses.length;i++) {
 
-                menu.add(R.id.CourseList, i, Menu.NONE, course_list_json.courses[i].code.toUpperCase());
+                MenuItem menuItem = menu.add(R.id.CourseList, i, Menu.NONE, course_list_json.courses[i].code.toUpperCase());
+                menuItem.setIcon(R.drawable.ic_menu_manage);
                 p.courses[i].code = p.courses[i].code.toUpperCase();
                 System.out.println(course_list_json.courses[i].code.toUpperCase());
             }
@@ -345,7 +349,7 @@ public class HomePage_Activity extends AppCompatActivity {
                 else if(l.flag[3] && l.flag[4] && l.flag[5]){
 
                     Bundle bundle = new Bundle();
-                    bundle.putString("CourseID", p.courses[menuItem.getItemId()].code + ": " + course);
+                    bundle.putString("CourseID", p.courses[menuItem.getItemId()].code.toUpperCase() + ": " + course);
 
                     Course_Fragment newcoursefragment = new Course_Fragment();
                     newcoursefragment.setArguments(bundle);
