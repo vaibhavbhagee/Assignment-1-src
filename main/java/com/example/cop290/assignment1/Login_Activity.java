@@ -114,7 +114,7 @@ public class Login_Activity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("Login"+ "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("Login"+ "Error: " + error.toString() ).setNeutralButton("Close", null).show();
 
                         //Toast.makeText(Main4Activity.this, "Server Error. Please check your internet connection.", Toast.LENGTH_LONG).show();
                     }

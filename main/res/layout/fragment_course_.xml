@@ -14,7 +14,7 @@
         app:tabMode="fixed"
         android:background="@color/colorPrimary"
         app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-        app:tabIndicatorColor="@color/google_yellow"
+        app:tabIndicatorColor="@color/google_green"
         app:tabSelectedTextColor="@color/google_yellow"
         app:tabTextColor="@color/white"
         android:layout_width="match_parent"

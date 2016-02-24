@@ -9,6 +9,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Sno"
         android:textSize="30dp"
+        android:textColor="#528812"
         android:width="100dp"
         android:paddingLeft="20dp"
         android:paddingTop="20dp"

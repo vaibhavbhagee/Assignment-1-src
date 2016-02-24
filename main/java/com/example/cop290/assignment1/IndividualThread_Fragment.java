@@ -87,7 +87,7 @@ public class IndividualThread_Fragment extends Fragment {
         ArrayList<CommentsRowObject> gl=new ArrayList<CommentsRowObject>();
         // GET RELEVANT DATA HERE
 
-        TextView thread_user = (TextView) view.findViewById(R.id.thread_user);
+        //TextView thread_user = (TextView) view.findViewById(R.id.thread_user);
         TextView thread_title = (TextView) view.findViewById(R.id.thread_title);
         TextView thread_description = (TextView) view.findViewById(R.id.thread_description);
         TextView thread_created_at = (TextView) view.findViewById(R.id.thread_created_at);
@@ -100,11 +100,11 @@ public class IndividualThread_Fragment extends Fragment {
                 gl.add(new CommentsRowObject(p.comment_users[i].first_name+p.comment_users[i].last_name,p.comments[i].description,p.times_readable[i]));
             }
 
-            thread_user.setText(getUsername(p.thread.user_id));
+            //thread_user.setText(getUsername(p.thread.user_id));
             thread_title.setText(p.thread.title);
             thread_description.setText(p.thread.description);
-            thread_created_at.setText(p.thread.created_at);
-            thread_updated_at.setText(p.thread.updated_at);
+            thread_created_at.setText("Created At: " + p.thread.created_at);
+            thread_updated_at.setText("Updated On: " + p.thread.updated_at);
         }
         catch (Exception e)
         {

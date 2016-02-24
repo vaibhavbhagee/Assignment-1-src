@@ -61,7 +61,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("basicuserinfoKat gaya tera behenchod. Aise kata:" + error.toString()).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("basicuserinfoError: " + error.toString()).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -88,7 +88,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("notifsKat gaya tera behenchod. Aise kata:" + error.toString()).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("notifsError: " + error.toString()).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -116,7 +116,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "gradesKat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "gradesError: " + error.toString() ).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -145,7 +145,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("assKat gaya tera behenchod. Aise kata:" + error.toString()).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("assError: " + error.toString()).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -174,7 +174,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("coursegradesKat gaya tera behenchod. Aise kata:" + error.toString()).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("coursegradesError: " + error.toString()).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -203,7 +203,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "theaddsKat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "theaddsError: " + error.toString() ).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -232,7 +232,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "onesasinfoKat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "onesasinfoError: " + error.toString() ).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -260,7 +260,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "infothreadKat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "infothreadError: " + error.toString() ).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -288,7 +288,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "newthreadKat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "newthreadError: " + error.toString() ).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -316,7 +316,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "commentKat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "commentError: " + error.toString() ).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -344,7 +344,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "obtainuserKat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "obtainuserError: " + error.toString() ).setNeutralButton("Close", null).show();
 
                     }
                 }) {
@@ -369,7 +369,7 @@ public class LoadData extends Activity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Kat gaya tera behenchod. Aise kata:" + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage( "Error: " + error.toString() ).setNeutralButton("Close", null).show();
 
                     }
                 }) {

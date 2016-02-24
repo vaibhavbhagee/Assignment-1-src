@@ -5,38 +5,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.cop290.assignment1.IndividualThread_Fragment">
 
-    <TextView
-        android:id="@+id/thread_user"
-        android:text="thread_user"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
 
     <TextView
         android:id="@+id/thread_title"
         android:text="thread_title"
         android:textStyle="bold"
-        android:paddingTop="30dp"
+        android:paddingTop="20dp"
         android:paddingLeft="20dp"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
         android:text="thread_description"
         android:id="@+id/thread_description"
-        android:layout_below="@+id/thread_created_at"
-        android:paddingTop="10dp"
-        android:layout_width="wrap_content"
+        android:paddingTop="0dp"
+        android:layout_width="match_parent"
         android:maxLines="2"
-        android:minLines="2"
+        android:minLines="1"
         android:paddingLeft="20dp"
-        android:layout_height="wrap_content" />
+        android:paddingRight="20dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/thread_title"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="thread_created_at"
-        android:layout_below="@+id/thread_title"
+        android:textSize="7dp"
+        android:layout_below="@+id/thread_description"
         android:paddingLeft="20dp"
         android:id="@+id/thread_created_at"
         android:layout_width="wrap_content"
@@ -44,6 +41,7 @@
 
     <TextView
         android:text="thread_updated_at"
+        android:textSize="7dp"
         android:id="@+id/thread_updated_at"
         android:layout_toRightOf="@+id/thread_created_at"
         android:layout_alignBaseline="@+id/thread_created_at"
@@ -55,12 +53,12 @@
     <EditText
         android:backgroundTint="@color/google_green"
         android:hint="Comment"
-        android:layout_below="@+id/thread_description"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="80dp"
-        android:maxLines="2"
+        android:paddingTop="350dp"
+        android:maxLines="3"
         android:id="@+id/new_comment"
         android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="80dp"
         android:layout_height="wrap_content" />
 
     <android.support.design.widget.FloatingActionButton
@@ -71,12 +69,11 @@
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_menu_send"
 
-        android:layout_marginLeft="320dp"
-        android:layout_marginRight="10dp"
-        android:layout_alignBaseline="@+id/new_comment"
+
+        android:layout_marginEnd="20dp"
 
 
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="320dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         />
@@ -84,11 +81,22 @@
             android:layout_marginRight="@dimen/fab_margin"-->
 
     <ListView
-        android:layout_marginTop="200dp"
+        android:layout_below="@id/thread_created_at"
         android:id="@+id/listView"
         android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="200dp"></ListView>
 
 </RelativeLayout>
+
+    <!--<TextView
+            android:id="@+id/thread_user"
+            android:text="thread_user"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />-->

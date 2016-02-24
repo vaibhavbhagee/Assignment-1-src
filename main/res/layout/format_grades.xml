@@ -10,20 +10,13 @@
         android:text="Sno"
         android:textSize="30dp"
         android:width="100dp"
+        android:textColor="#528812"
         android:paddingLeft="20dp"
         android:paddingTop="20dp"
         android:textStyle="bold|italic"
         android:id="@+id/slno" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Course"
-        android:paddingTop="20dp"
 
-        android:layout_marginLeft="100dp"
-        android:id="@+id/course" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,8 +25,9 @@
         android:text="Grade Item"
         android:paddingTop="20dp"
 
-        android:layout_marginLeft="50dp"
-        android:layout_toRightOf="@+id/course"
+
+        android:layout_marginLeft="0dp"
+        android:layout_toRightOf="@+id/slno"
 
         android:id="@+id/grade_item" />
 
