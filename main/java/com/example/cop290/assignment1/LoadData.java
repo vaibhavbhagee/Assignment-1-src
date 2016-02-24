@@ -383,4 +383,31 @@ public class LoadData extends Activity {
         requestQueue.add(stringRequest);
     }
 
+    public void DownloadFile(String filename){
+        loginRequest = ServerURL + "/courses/link.json/"+filename;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, loginRequest ,
+                new Response.Listener<String>() {
+                    @Override
+                    //On valid response
+                    public void onResponse(String response) {
+                        Toast.makeText(thisContext, "Downloading", Toast.LENGTH_LONG).show();
+
+                    }
+                },
+                //Launched when server return error
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("Download Failed").setNeutralButton("Close", null).show();
+
+                    }
+                }) {
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(thisContext);
+        requestQueue.add(stringRequest);
+
+    }
+
 }
