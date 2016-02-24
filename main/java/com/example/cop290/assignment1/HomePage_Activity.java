@@ -1,8 +1,10 @@
 package com.example.cop290.assignment1;
 
 import android.app.Fragment;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.NavigationView;
@@ -14,6 +16,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -97,7 +100,7 @@ public class HomePage_Activity extends AppCompatActivity {
 
                 if (menuItem.getItemId() == 1 || menuItem.getItemId() == 2 || menuItem.getItemId() == 3 || menuItem.getItemId() == 4 || menuItem.getItemId() == 5 || menuItem.getItemId() == 6 || menuItem.getItemId() == 7 || menuItem.getItemId() == 8 || menuItem.getItemId() == 9 || menuItem.getItemId() == 0) {
 
-                    on_loadCourse(p.courses[menuItem.getItemId()].code, menuItem);
+                    on_loadCourse(p.courses[menuItem.getItemId()].code , p.courses[menuItem.getItemId()].description, menuItem);
 
                 }
 
@@ -158,7 +161,8 @@ public class HomePage_Activity extends AppCompatActivity {
 
             for(int i=0;i<course_list_json.courses.length;i++) {
 
-                menu.add(R.id.CourseList, i, Menu.NONE, course_list_json.courses[i].code.toUpperCase());
+                MenuItem menuItem = menu.add(R.id.CourseList, i, Menu.NONE, course_list_json.courses[i].code.toUpperCase());
+                menuItem.setIcon(R.drawable.ic_menu_manage);
                 p.courses[i].code = p.courses[i].code.toUpperCase();
                 System.out.println(course_list_json.courses[i].code.toUpperCase());
             }
@@ -166,14 +170,14 @@ public class HomePage_Activity extends AppCompatActivity {
         }catch(Exception e){e.printStackTrace();}
 
     }
-    public void on_loadCourse(String s, MenuItem menuItem){
+    public void on_loadCourse(String s, String course, MenuItem menuItem){
         final LoadData l = new LoadData();
 
         l.SetListOfAssignments(s);
         l.SetCoursegrades(s);
         l.SetCourseThreads(s);
 
-        timer2(0,l, menuItem);
+        timer2(0,l, menuItem, course);
 
         l.flag[3] = false;
         l.flag[4] = false;
@@ -266,7 +270,7 @@ public class HomePage_Activity extends AppCompatActivity {
         System.out.println("testing " + comment1);
         System.out.println("testing " + thread_id1);
 
-        l.SetAddCommentToThread(thread_id1, comment1.replace(' ','+'));
+        l.SetAddCommentToThread(thread_id1, comment1.replace(' ', '+'));
         timer7(0,l, thread_id1);
         l.flag[9] = false;
 
@@ -353,20 +357,20 @@ public class HomePage_Activity extends AppCompatActivity {
         }.start();
         return true;
     }
-    public boolean timer2(final int x, final LoadData l, final MenuItem menuItem){
+    public boolean timer2(final int x, final LoadData l, final MenuItem menuItem, final String course){
 
         new CountDownTimer(50, 1000) {
             public void onTick(long millisUntilFinished) {
 
             }
             public void onFinish() {
-                if(x==100){
+                if(x==100) {
                     Toast.makeText(HomePage_Activity.this, "Connection Timed Out", Toast.LENGTH_LONG).show();
                 }
                 else if(l.flag[3] && l.flag[4] && l.flag[5]){
 
                     Bundle bundle = new Bundle();
-                    bundle.putString("CourseID", p.courses[menuItem.getItemId()].code);
+                    bundle.putString("CourseID", p.courses[menuItem.getItemId()].code.toUpperCase() + ": " + course);
                     Course_Fragment newcoursefragment = new Course_Fragment();
                     newcoursefragment.setArguments(bundle);
                     System.out.println("done \t" + l.ListCourseThreadsJSON);
@@ -374,7 +378,7 @@ public class HomePage_Activity extends AppCompatActivity {
                     xfragmentTransaction.replace(R.id.containerView, newcoursefragment).commit();
 
                 } else {
-                    timer2(x+1,l, menuItem);
+                    timer2(x+1,l, menuItem, course);
                     System.out.println("pocessing \t" + l.flag[3] + " " + l.flag[4] + " " + l.flag[5] + l.ListOfCoursesJSON);
                 }
             }
@@ -388,7 +392,7 @@ public class HomePage_Activity extends AppCompatActivity {
 
             }
             public void onFinish() {
-                if(x==100){
+                if(x==100) {
                     Toast.makeText(HomePage_Activity.this, "Connection Timed Out", Toast.LENGTH_LONG).show();
                 }
                 else if(l.flag[6]){
@@ -411,7 +415,7 @@ public class HomePage_Activity extends AppCompatActivity {
 
             }
             public void onFinish() {
-                if(x==100){
+                if(x==100) {
                     Toast.makeText(HomePage_Activity.this, "Connection Timed Out", Toast.LENGTH_LONG).show();
                 }
                 else if(l.flag[7]){
@@ -482,7 +486,7 @@ public class HomePage_Activity extends AppCompatActivity {
 
             }
             public void onFinish() {
-                if(x==100){
+                if(x==100) {
                     Toast.makeText(HomePage_Activity.this, "Connection Timed Out", Toast.LENGTH_LONG).show();
                 }
                 else if(l.flag[5]){
