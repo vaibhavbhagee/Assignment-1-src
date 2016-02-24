@@ -104,7 +104,7 @@ public class Login_Activity extends AppCompatActivity {
                                 b.putString("ServerURL", ServerURL);
                                 b.putString("UserJSON", response);
 
-                                LoadData l = new LoadData();
+
                                 l.json_response = response;
 
                                 intent.putExtras(b);

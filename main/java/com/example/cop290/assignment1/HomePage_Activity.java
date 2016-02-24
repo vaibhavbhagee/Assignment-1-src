@@ -222,8 +222,8 @@ public class HomePage_Activity extends AppCompatActivity {
         EditText description = (EditText) parent.findViewById(R.id.description);
         TextView course_code = (TextView) parent.findViewById(R.id.course_code);
 
-        String title1 = title.getText().toString().replace(' ','+');
-        String description1 = description.getText().toString().replace(' ','+');
+        String title1 = title.getText().toString().replace(' ', '+');
+        String description1 = description.getText().toString().replace(' ', '+');
         String course = course_code.getText().toString();
 
         if(title1.equals("")){
@@ -398,7 +398,8 @@ public class HomePage_Activity extends AppCompatActivity {
                 else if(l.flag[6]){
                     System.out.println("done \t" + l.InfoOfParticularAssignmentJSON);
                     FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
-                    xfragmentTransaction.replace(R.id.containerView, new IndividualAssignment_Fragment()).commit();
+                    IndividualAssignment_Fragment f = new IndividualAssignment_Fragment();
+                    xfragmentTransaction.replace(R.id.containerView, f).addToBackStack(null).commit();
 
                 } else {
                     timer3(x+1,l);
@@ -421,7 +422,7 @@ public class HomePage_Activity extends AppCompatActivity {
                 else if(l.flag[7]){
                     System.out.println("done \t"+l.InfoThreadJSON);
                     FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.containerView, new IndividualThread_Fragment()).commit();
+                    fragmentTransaction.replace(R.id.containerView, new IndividualThread_Fragment()).addToBackStack(null).commit();
 
                 } else {
                     timer4(x+1,l);

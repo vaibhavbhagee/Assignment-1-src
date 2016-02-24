@@ -4,6 +4,7 @@ package com.example.cop290.assignment1;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -44,6 +45,21 @@ public class IndividualThread_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_individual_thread_, container, false);
         populateView(view);
+
+
+
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.backfabt);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                getFragmentManager().popBackStack();
+
+            }
+        });
+
+
 
         return view;
     }
