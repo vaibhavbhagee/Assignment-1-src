@@ -56,6 +56,21 @@ public class HomePage_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Bundle bundle = getIntent().getExtras();
+        String json_response = bundle.getString("UserJSON");
+        try{
+            ParseLoginJSON p = new ParseLoginJSON(json_response);
+            this.name = p.user.first_name+" "+p.user.last_name;
+            System.out.println("Testing name again "+this.name);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        Bundle b = new Bundle();
+        b.putString("name", this.name);
+        HomePage_Fragment homepage = new HomePage_Fragment();
+        homepage.setArguments(b);
+
         flag_nav = false;
         setContentView(R.layout.activity_home_page_);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -63,20 +78,11 @@ public class HomePage_Activity extends AppCompatActivity {
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
-        mFragmentTransaction.replace(R.id.containerView, new HomePage_Fragment()).commit();
+        mFragmentTransaction.replace(R.id.containerView, homepage).commit();
 
-        Bundle bundle = getIntent().getExtras();
-        String json_response = bundle.getString("UserJSON");
 
-        try
-        {
-            ParseLoginJSON p = new ParseLoginJSON(json_response);
-            this.name = p.user.first_name+" "+p.user.last_name;
-        }
-        catch (Exception e)
-        {
 
-        }
+
 
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
@@ -145,7 +151,6 @@ public class HomePage_Activity extends AppCompatActivity {
     void getCoursesAndAddToList(Menu menu) {
         LoadData l = new LoadData();
         String response = l.ListOfCoursesJSON;
-        Toast.makeText(HomePage_Activity.this, l.ListOfCoursesJSON, Toast.LENGTH_LONG).show();
 
         try {
             ParseCourseListJSON course_list_json = new ParseCourseListJSON(response);
@@ -213,9 +218,18 @@ public class HomePage_Activity extends AppCompatActivity {
         EditText description = (EditText) parent.findViewById(R.id.description);
         TextView course_code = (TextView) parent.findViewById(R.id.course_code);
 
-        String title1 = title.getText().toString();
-        String description1 = description.getText().toString();
+        String title1 = title.getText().toString().replace(' ','+');
+        String description1 = description.getText().toString().replace(' ','+');
         String course = course_code.getText().toString();
+
+        if(title1.equals("")){
+            Toast.makeText(HomePage_Activity.this,"Title is Empty", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(description1.equals("")){
+            Toast.makeText(HomePage_Activity.this,"Description is Empty", Toast.LENGTH_LONG).show();
+            return;
+        }
 
         final LoadData l = new LoadData();
         System.out.println("testing " + title1);
@@ -239,6 +253,11 @@ public class HomePage_Activity extends AppCompatActivity {
 
         String comment1 = comment.getText().toString();
         String thread_id1 = thread_id.getText().toString();
+
+        if(comment1.equals("")){
+            Toast.makeText(HomePage_Activity.this,"Comment is Empty", Toast.LENGTH_LONG).show();
+            return;
+        }
 
         // POST THE THREAD COMMENT HERE
         //SEND APPROPRIATE REQUESTS
@@ -301,6 +320,8 @@ public class HomePage_Activity extends AppCompatActivity {
         t.setText(this.name);
 
 
+
+
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.containerView, new HomePage_Fragment()).commit();
     }
@@ -346,7 +367,6 @@ public class HomePage_Activity extends AppCompatActivity {
 
                     Bundle bundle = new Bundle();
                     bundle.putString("CourseID", p.courses[menuItem.getItemId()].code);
-
                     Course_Fragment newcoursefragment = new Course_Fragment();
                     newcoursefragment.setArguments(bundle);
                     System.out.println("done \t" + l.ListCourseThreadsJSON);

@@ -88,18 +88,21 @@ public class Login_Activity extends AppCompatActivity {
                             System.out.println(response);
 
                             if( ! login_response.success ) {
-                                new AlertDialog.Builder(thisContext).setTitle("Response").setMessage("Login failure, Bhagee pass").setNeutralButton("Close", null).show();
+                                new AlertDialog.Builder(thisContext).setTitle("Response").setMessage("Login failure\nPlease check your Credentials").setNeutralButton("Close", null).show();
                             }
                             else
                             {
                                 //JSONObject name = responseJSON.getJSONObject("user");
-                                new AlertDialog.Builder(thisContext).setTitle("Response").setMessage( login_response.print() ).setNeutralButton("Close", null).show();
+                                //new AlertDialog.Builder(thisContext).setTitle("Response").setMessage( login_response.print() ).setNeutralButton("Close", null).show();
 
                                 Intent intent = new Intent(thisContext, HomePage_Activity.class);
                                 Bundle b = new Bundle();
 
                                 b.putString("ServerURL", ServerURL);
                                 b.putString("UserJSON", response);
+
+                                LoadData l = new LoadData();
+                                l.json_response = response;
 
                                 intent.putExtras(b);
 
@@ -114,7 +117,7 @@ public class Login_Activity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("Login"+ "Error: " + error.toString() ).setNeutralButton("Close", null).show();
+                        new AlertDialog.Builder(thisContext).setTitle("Error").setMessage("No Internet Connection\nPlease check your connection").setNeutralButton("Close", null).show();
 
                         //Toast.makeText(Main4Activity.this, "Server Error. Please check your internet connection.", Toast.LENGTH_LONG).show();
                     }
