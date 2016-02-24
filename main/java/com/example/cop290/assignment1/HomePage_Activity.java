@@ -67,6 +67,7 @@ public class HomePage_Activity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         String json_response = bundle.getString("UserJSON");
+
         try
         {
             ParseLoginJSON p = new ParseLoginJSON(json_response);
@@ -91,14 +92,7 @@ public class HomePage_Activity extends AppCompatActivity {
                 if (menuItem.getItemId() == 1 || menuItem.getItemId() == 2 || menuItem.getItemId() == 3 || menuItem.getItemId() == 4 || menuItem.getItemId() == 5 || menuItem.getItemId() == 6 || menuItem.getItemId() == 7 || menuItem.getItemId() == 8 || menuItem.getItemId() == 9 || menuItem.getItemId() == 0) {
 
                     on_loadCourse(p.courses[menuItem.getItemId()].code, menuItem);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("CourseID", p.courses[menuItem.getItemId()].code);
-//
-//                    Course_Fragment newcoursefragment = new Course_Fragment();
-//                    newcoursefragment.setArguments(bundle);
 
-//                    FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
-//                    xfragmentTransaction.replace(R.id.containerView, newcoursefragment).commit();
                 }
 
                 if (menuItem.getItemId() == R.id.nav_notifications) {
@@ -196,7 +190,6 @@ public class HomePage_Activity extends AppCompatActivity {
 
         try {
             ParseCourseThreadsJSON p = new ParseCourseThreadsJSON(l.ListCourseThreadsJSON);
-            Toast.makeText(HomePage_Activity.this,slno+ " ", Toast.LENGTH_LONG).show();
 
             l.SetInfoOfThread(p.threads[slno].id + "");
             timer4(l);
@@ -328,7 +321,6 @@ public class HomePage_Activity extends AppCompatActivity {
                         flag_nav = true;
                     }
                     swipeRefreshLayout.setRefreshing(false);
-                    Toast.makeText(HomePage_Activity.this, "Done", Toast.LENGTH_LONG).show();
                 } else {
                     timer(l, i);
                     //System.out.println("pocessing \t" + l.ListOfCoursesJSON);

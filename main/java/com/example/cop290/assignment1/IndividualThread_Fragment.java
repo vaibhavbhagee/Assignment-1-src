@@ -95,7 +95,7 @@ public class IndividualThread_Fragment extends Fragment {
         ArrayList<CommentsRowObject> gl=new ArrayList<CommentsRowObject>();
         // GET RELEVANT DATA HERE
 
-        TextView thread_user = (TextView) view.findViewById(R.id.thread_user);
+        //TextView thread_user = (TextView) view.findViewById(R.id.thread_user);
         TextView thread_title = (TextView) view.findViewById(R.id.thread_title);
         TextView thread_description = (TextView) view.findViewById(R.id.thread_description);
         TextView thread_created_at = (TextView) view.findViewById(R.id.thread_created_at);
