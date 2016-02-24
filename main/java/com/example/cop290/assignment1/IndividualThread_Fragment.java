@@ -92,6 +92,7 @@ public class IndividualThread_Fragment extends Fragment {
         TextView thread_description = (TextView) view.findViewById(R.id.thread_description);
         TextView thread_created_at = (TextView) view.findViewById(R.id.thread_created_at);
         TextView thread_updated_at = (TextView) view.findViewById(R.id.thread_updated_at);
+        TextView thread_id = (TextView) view.findViewById(R.id.thread_id);
 
         try {
             ParseParticularThreadJSON p = new ParseParticularThreadJSON(send_request());
@@ -105,6 +106,10 @@ public class IndividualThread_Fragment extends Fragment {
             thread_description.setText(p.thread.description);
             thread_created_at.setText("Created At: " + p.thread.created_at);
             thread_updated_at.setText("Updated On: " + p.thread.updated_at);
+
+
+            //TODO - SET THREAD ID
+            thread_id.setText(p.thread.id+"");
         }
         catch (Exception e)
         {
