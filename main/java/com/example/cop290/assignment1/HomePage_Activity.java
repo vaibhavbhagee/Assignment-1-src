@@ -509,5 +509,13 @@ public class HomePage_Activity extends AppCompatActivity {
         }.start();
         return true;
     }
+
+    public void get_assignment(View view) {
+        TextView t = (TextView) view.findViewById(R.id.file_src);
+        String file_src = t.getText().toString();
+        LoadData l = new LoadData();
+        l.DownloadFile(file_src);
+
+    }
 }
 

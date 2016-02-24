@@ -149,6 +149,7 @@ public class IndividualAssignment_Fragment extends Fragment {
         TextView assignment_time_remaining = (TextView) view.findViewById(R.id.assignment_time_remaining);
         TextView assignment_late_days = (TextView) view.findViewById(R.id.assignment_late_days);
 
+
         //SET THE PARAMETERS HERE
         try
         {
@@ -164,6 +165,7 @@ public class IndividualAssignment_Fragment extends Fragment {
             assignment_deadline.setText(p.assignment.deadline);
             assignment_time_remaining.setText(ret_duration(p.assignment.deadline));
             assignment_late_days.setText(p.assignment.late_days_allowed+"");
+
         }
         catch(Exception e)
         {
@@ -189,11 +191,13 @@ public class IndividualAssignment_Fragment extends Fragment {
             }
             TextView file_name = (TextView) convertView.findViewById(R.id.file_name);
             TextView file_created_at = (TextView) convertView.findViewById(R.id.file_created_at);
+            TextView file_src = (TextView) convertView.findViewById(R.id.file_src);
 
             //SET ALL THE PARAMETERS HERE
 
             file_name.setText(user.filename);
             file_created_at.setText(user.created_at);
+            file_src.setText(user.file);
 
             return convertView;
         }

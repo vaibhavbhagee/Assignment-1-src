@@ -56,7 +56,8 @@
         android:textSize="20dp" />
     <ImageView android:id="@+id/splashscreen" android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:src="@mipmap/ic_launcher"
+
+        android:src="@mipmap/ic_launchers"
         android:paddingLeft="0dp"
         android:paddingRight="0dp"
         android:paddingTop="90dp"
