@@ -65,7 +65,8 @@ public class HomePage_Activity extends AppCompatActivity {
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.replace(R.id.containerView, new HomePage_Fragment()).commit();
 
-        String json_response = savedInstanceState.getString("UserJSON");
+        Bundle bundle = getIntent().getExtras();
+        String json_response = bundle.getString("UserJSON");
         try
         {
             ParseLoginJSON p = new ParseLoginJSON(json_response);
@@ -147,8 +148,7 @@ public class HomePage_Activity extends AppCompatActivity {
 
     }
 
-    void getCoursesAndAddToList(Menu menu)
-    {
+    void getCoursesAndAddToList(Menu menu) {
         LoadData l = new LoadData();
         String response = l.ListOfCoursesJSON;
         Toast.makeText(HomePage_Activity.this, l.ListOfCoursesJSON, Toast.LENGTH_LONG).show();
@@ -167,7 +167,20 @@ public class HomePage_Activity extends AppCompatActivity {
         }catch(Exception e){e.printStackTrace();}
 
     }
+    public void on_loadCourse(String s, MenuItem menuItem){
+        final LoadData l = new LoadData();
 
+        l.SetListOfAssignments(s);
+        l.SetCoursegrades(s);
+        l.SetCourseThreads(s);
+
+        timer2(l, menuItem);
+
+        l.flag[3] = false;
+        l.flag[4] = false;
+        l.flag[5] = false;
+
+    }
     public void thread_onClick(View view) {
 
         // NAVIGATE TO INDIVIDUAL THREAD PAGE
@@ -196,6 +209,33 @@ public class HomePage_Activity extends AppCompatActivity {
 
     }
 
+    public void post_new_thread(View view) {
+        //POST NEW THREAD HERE
+
+
+//        android.support.design.widget.FloatingActionButton f = (android.support.design.widget.FloatingActionButton) view;
+        RelativeLayout parent = (RelativeLayout)view.getParent();
+
+        EditText title = (EditText) parent.findViewById(R.id.title);
+        EditText description = (EditText) parent.findViewById(R.id.description);
+        TextView course_code = (TextView) parent.findViewById(R.id.course_code);
+
+        String title1 = title.getText().toString();
+        String description1 = description.getText().toString();
+        String course = course_code.getText().toString();
+
+        final LoadData l = new LoadData();
+        System.out.println("testing " + title1);
+        System.out.println("testing " + description1);
+        System.out.println("testing" + course);
+
+        l.SetCreateNewThread(title1, description1, course.toLowerCase());
+        timer5(l, course);
+        l.flag[8] = false;
+
+        Toast.makeText(HomePage_Activity.this,"New thread posted", Toast.LENGTH_LONG).show();
+
+    }
 
     public void post_thread_comment(View view) {
 
@@ -211,16 +251,13 @@ public class HomePage_Activity extends AppCompatActivity {
         //SEND APPROPRIATE REQUESTS
 
         final LoadData l = new LoadData();
-        System.out.println("testing "+comment1);
-        System.out.println("testing "+thread_id1);
+        System.out.println("testing " + comment1);
+        System.out.println("testing " + thread_id1);
 
-        l.SetAddCommentToThread(thread_id1, comment1);
-        timer7(l);
-
+        l.SetAddCommentToThread(thread_id1, comment1.replace(' ','+'));
+        timer7(l, thread_id1);
         l.flag[9] = false;
-        l.SetInfoOfThread(thread_id1);
-        timer4(l);
-        l.flag[7] = false;
+
     }
 
     public void navigate_to_assignment(View view) {
@@ -233,7 +270,7 @@ public class HomePage_Activity extends AppCompatActivity {
 
         final LoadData l = new LoadData();
         l.setContext(thisContext);
-        System.out.println(view.toString()+" ");
+        System.out.println(view.toString() + " ");
 //        view.findViewById(R.id.listView.)
 
         try {
@@ -249,7 +286,6 @@ public class HomePage_Activity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 
     public void on_refresh(){
         final LoadData l = new LoadData();
@@ -292,7 +328,7 @@ public class HomePage_Activity extends AppCompatActivity {
                         flag_nav = true;
                     }
                     swipeRefreshLayout.setRefreshing(false);
-                    Toast.makeText(HomePage_Activity.this,"Done", Toast.LENGTH_LONG).show();
+                    Toast.makeText(HomePage_Activity.this, "Done", Toast.LENGTH_LONG).show();
                 } else {
                     timer(l, i);
                     //System.out.println("pocessing \t" + l.ListOfCoursesJSON);
@@ -327,7 +363,6 @@ public class HomePage_Activity extends AppCompatActivity {
         }.start();
         return true;
     }
-
     public boolean timer3(final LoadData l){
 
         new CountDownTimer(50, 1000) {
@@ -348,7 +383,6 @@ public class HomePage_Activity extends AppCompatActivity {
         }.start();
         return true;
     }
-
     public boolean timer4(final LoadData l){
 
         new CountDownTimer(50, 1000) {
@@ -369,64 +403,7 @@ public class HomePage_Activity extends AppCompatActivity {
         }.start();
         return true;
     }
-
-    public void on_loadCourse(String s, MenuItem menuItem){
-        final LoadData l = new LoadData();
-
-        l.SetListOfAssignments(s);
-        l.SetCoursegrades(s);
-        l.SetCourseThreads(s);
-
-        timer2(l, menuItem);
-
-        l.flag[3] = false;
-        l.flag[4] = false;
-        l.flag[5] = false;
-
-    }
-
-    public void post_new_thread(View view) {
-        //POST NEW THREAD HERE
-
-
-//        android.support.design.widget.FloatingActionButton f = (android.support.design.widget.FloatingActionButton) view;
-        RelativeLayout parent = (RelativeLayout)view.getParent();
-
-        EditText title = (EditText) parent.findViewById(R.id.title);
-        EditText description = (EditText) parent.findViewById(R.id.description);
-        TextView course_code = (TextView) parent.findViewById(R.id.course_code);
-
-        String title1 = title.getText().toString();
-        String description1 = description.getText().toString();
-        String course = course_code.getText().toString();
-
-        final LoadData l = new LoadData();
-        System.out.println("testing "+title1);
-        System.out.println("testing "+description1);
-        System.out.println("testing"+course);
-        l.SetCreateNewThread(title1, description1, course.toLowerCase());
-        timer5(l);
-
-        l.flag[8] = false;
-        l.SetCourseThreads(course);
-        timer6(l,course);
-        l.flag[5] = false;
-
-        Toast.makeText(HomePage_Activity.this,"New thread button working", Toast.LENGTH_LONG).show();
-
-//        RelativeLayout parent = (RelativeLayout)view.getParent();
-//        EditText title = (EditText) parent.findViewById(R.id.title);
-//        EditText description = (EditText) parent.findViewById(R.id.description);
-//        TextView course_code = (TextView) parent.findViewById(R.id.course_code);
-
-        //USE THE PARAMETERS HERE
-
-        Toast.makeText(HomePage_Activity.this,title1, Toast.LENGTH_LONG).show();
-
-
-    }
-
-    public boolean timer5(final LoadData l){
+    public boolean timer5(final LoadData l, final String course){
 
         new CountDownTimer(50, 1000) {
             public void onTick(long millisUntilFinished) {
@@ -434,20 +411,17 @@ public class HomePage_Activity extends AppCompatActivity {
             }
             public void onFinish() {
                 if(l.flag[8]){
-                    System.out.println("done \t"+l.InfoThreadJSON);
-//                    FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-//                    fragmentTransaction.replace(R.id.containerView, new IndividualThread_Fragment()).commit();
-
+                    l.SetCourseThreads(course);
+                    timer6(l,course);
+                    l.flag[5] = false;
                 } else {
-                    timer5(l);
-                    System.out.println("pocessing \t" + l.flag[8]+l.InfoThreadJSON);
+                    timer5(l, course);
                 }
             }
         }.start();
         return true;
     }
-
-    public boolean timer7(final LoadData l){
+    public boolean timer7(final LoadData l, final String thread_id1){
 
         new CountDownTimer(50, 1000) {
             public void onTick(long millisUntilFinished) {
@@ -455,19 +429,22 @@ public class HomePage_Activity extends AppCompatActivity {
             }
             public void onFinish() {
                 if(l.flag[9]){
+                    Toast.makeText(HomePage_Activity.this,"New comment added", Toast.LENGTH_LONG).show();
+                    l.SetInfoOfThread(thread_id1);
+                    timer4(l);
+                    l.flag[7] = false;
                     System.out.println("done \t"+l.AddCommentThreadJSON);
 //                    FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
 //                    fragmentTransaction.replace(R.id.containerView, new IndividualThread_Fragment()).commit();
 
                 } else {
-                    timer7(l);
+                    timer7(l, thread_id1);
                     System.out.println("pocessing \t" + l.flag[9]+l.AddCommentThreadJSON);
                 }
             }
         }.start();
         return true;
     }
-
     public boolean timer6(final LoadData l,final String course_id){
 
         new CountDownTimer(50, 1000) {
