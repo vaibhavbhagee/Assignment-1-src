@@ -52,8 +52,8 @@ public class Login_Activity extends AppCompatActivity {
                 login();
 
 
-//               Intent intent = new Intent(thisContext, HomePage_Activity.class);
-//                startActivity(intent);
+               //Intent intent = new Intent(thisContext, HomePage_Activity.class);
+                //startActivity(intent);
 
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                ///         .setAction("Action", null).show();

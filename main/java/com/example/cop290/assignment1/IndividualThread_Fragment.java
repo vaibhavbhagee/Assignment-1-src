@@ -108,10 +108,12 @@ public class IndividualThread_Fragment extends Fragment {
             {
                 gl.add(new CommentsRowObject(p.comment_users[i].first_name+p.comment_users[i].last_name,p.comments[i].description,p.times_readable[i]));
             }
+
             //thread_user.setText(getUsername(p.thread.user_id));
-            System.out.println("testing name " + this.names);
-            final LoadData l = new LoadData();
-            l.flag[10] = false;
+//            System.out.println("testing name " + this.names);
+//            final LoadData l = new LoadData();
+//            l.flag[10] = false;
+
             thread_title.setText(p.thread.title);
             thread_description.setText(p.thread.description);
             thread_created_at.setText("Created At: " + p.thread.created_at);
