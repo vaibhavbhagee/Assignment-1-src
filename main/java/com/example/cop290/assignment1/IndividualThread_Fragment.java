@@ -25,7 +25,14 @@ import java.util.ArrayList;
  */
 public class IndividualThread_Fragment extends Fragment {
 
-
+    public String names;
+    public void set_name(String s){
+        this.names = s;
+    }
+    public String getName()
+    {
+        return this.names;
+    }
     public IndividualThread_Fragment() {
         // Required empty public constructor
     }
@@ -49,38 +56,39 @@ public class IndividualThread_Fragment extends Fragment {
         return st;
     }
 
+/*
     String getUsername(int id) throws JSONException {
         //function to get username by making a get request to /users/user.json/id
         LoadData l = new LoadData();
-        l.ObtainUserInfo(id+"");
-        timer_user_info(l);
-        l.flag[10] = false;
+        l.ObtainUserInfo(id + "");
+        return timer_user_info(l);
 
-        JSONObject user_json = new JSONObject(l.UserInfoJSON);
-        JSONObject user = new JSONObject(user_json.getJSONObject("user").toString());
-
-        return user.getString("first_name")+user.getString("last_name");
     }
+*/
 
-    public boolean timer_user_info(final LoadData l){
-
+/*    public String timer_user_info(final LoadData l){
+        final String s = "";
         new CountDownTimer(50, 1000) {
             public void onTick(long millisUntilFinished) {
 
             }
             public void onFinish() {
                 if(l.flag[10]){
-                    //System.out.println("done \t"+l.ListOfCoursesJSON);
-//                    swipeRefreshLayout.setRefreshing(false);
-//                    Toast.makeText(HomePage_Activity.this,"Done", Toast.LENGTH_LONG).show();
+                    try {
+                        JSONObject user_json = new JSONObject(l.UserInfoJSON);
+                        JSONObject user = new JSONObject(user_json.getJSONObject("user").toString());
+                        set_name(user.getString("first_name")+user.getString("last_name"));
+                        //return getName();
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
                 } else {
                     timer_user_info(l);
                     //System.out.println("pocessing \t" + l.ListOfCoursesJSON);
                 }
             }
         }.start();
-        return true;
-    }
+    }*/
 
     void populateView(View view) {
 
@@ -101,7 +109,11 @@ public class IndividualThread_Fragment extends Fragment {
                 gl.add(new CommentsRowObject(p.comment_users[i].first_name+p.comment_users[i].last_name,p.comments[i].description,p.times_readable[i]));
             }
 
-            thread_user.setText(getUsername(p.thread.user_id));
+            //thread_user.setText(getUsername(p.thread.user_id));
+//            System.out.println("testing name " + this.names);
+//            final LoadData l = new LoadData();
+//            l.flag[10] = false;
+
             thread_title.setText(p.thread.title);
             thread_description.setText(p.thread.description);
             thread_created_at.setText("Created At: " + p.thread.created_at);
