@@ -168,7 +168,7 @@ public class HomePage_Activity extends AppCompatActivity {
         l.SetCoursegrades(s);
         l.SetCourseThreads(s);
 
-        timer2(l, menuItem);
+        timer2(0,l, menuItem);
 
         l.flag[3] = false;
         l.flag[4] = false;
@@ -192,7 +192,7 @@ public class HomePage_Activity extends AppCompatActivity {
             ParseCourseThreadsJSON p = new ParseCourseThreadsJSON(l.ListCourseThreadsJSON);
 
             l.SetInfoOfThread(p.threads[slno].id + "");
-            timer4(l);
+            timer4(0,l);
             l.flag[7] = false;
         }
         catch(Exception e)
@@ -223,7 +223,7 @@ public class HomePage_Activity extends AppCompatActivity {
         System.out.println("testing" + course);
 
         l.SetCreateNewThread(title1, description1, course.toLowerCase());
-        timer5(l, course);
+        timer5(0, l, course);
         l.flag[8] = false;
 
         Toast.makeText(HomePage_Activity.this,"New thread posted", Toast.LENGTH_LONG).show();
@@ -248,7 +248,7 @@ public class HomePage_Activity extends AppCompatActivity {
         System.out.println("testing " + thread_id1);
 
         l.SetAddCommentToThread(thread_id1, comment1.replace(' ','+'));
-        timer7(l, thread_id1);
+        timer7(0,l, thread_id1);
         l.flag[9] = false;
 
     }
@@ -268,10 +268,9 @@ public class HomePage_Activity extends AppCompatActivity {
 
         try {
             ParseCourseAssignmentsJSON p = new ParseCourseAssignmentsJSON(l.ListOfAllAssignmentsJSON);
-            Toast.makeText(HomePage_Activity.this,slno+ " ", Toast.LENGTH_LONG).show();
 
             l.SetInfoOfAssignment(p.assignments[slno].id + "");
-            timer3(l);
+            timer3(0,l);
             l.flag[6] = false;
         }
         catch(Exception e)
@@ -285,16 +284,16 @@ public class HomePage_Activity extends AppCompatActivity {
         l.setContext(thisContext);
 
         l.SetCourses();
-        timer(l, 0);
+        timer(0,l, 0);
         l.flag[0] = false;
 
 
         l.SetNotifications();
-        timer(l, 1);
+        timer(0,l, 1);
         l.flag[1] = false;
 
         l.SetGrades();
-        timer(l, 2);
+        timer(0,l, 2);
         l.flag[2] = false;
 
         View v = mNavigationView.getHeaderView(0);
@@ -306,14 +305,18 @@ public class HomePage_Activity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.containerView, new HomePage_Fragment()).commit();
     }
 
-    public boolean timer(final LoadData l, final int i){
+    public boolean timer(final int x, final LoadData l, final int i){
 
         new CountDownTimer(50, 1000) {
             public void onTick(long millisUntilFinished) {
 
             }
             public void onFinish() {
-                if(l.flag[i]){
+                if(x==100){
+                    Toast.makeText(HomePage_Activity.this,"Connection Timed Out", Toast.LENGTH_LONG).show();
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+                else if(l.flag[i]){
                     //System.out.println("done \t"+l.ListOfCoursesJSON);
                     if(!flag_nav && i==0){
                         Menu menu = mNavigationView.getMenu();
@@ -322,21 +325,24 @@ public class HomePage_Activity extends AppCompatActivity {
                     }
                     swipeRefreshLayout.setRefreshing(false);
                 } else {
-                    timer(l, i);
+                    timer(x+1,l, i);
                     //System.out.println("pocessing \t" + l.ListOfCoursesJSON);
                 }
             }
         }.start();
         return true;
     }
-    public boolean timer2(final LoadData l, final MenuItem menuItem){
+    public boolean timer2(final int x, final LoadData l, final MenuItem menuItem){
 
         new CountDownTimer(50, 1000) {
             public void onTick(long millisUntilFinished) {
 
             }
             public void onFinish() {
-                if(l.flag[3] && l.flag[4] && l.flag[5]){
+                if(x==100){
+                    Toast.makeText(HomePage_Activity.this, "Connection Timed Out", Toast.LENGTH_LONG).show();
+                }
+                else if(l.flag[3] && l.flag[4] && l.flag[5]){
 
                     Bundle bundle = new Bundle();
                     bundle.putString("CourseID", p.courses[menuItem.getItemId()].code);
@@ -348,103 +354,118 @@ public class HomePage_Activity extends AppCompatActivity {
                     xfragmentTransaction.replace(R.id.containerView, newcoursefragment).commit();
 
                 } else {
-                    timer2(l, menuItem);
+                    timer2(x+1,l, menuItem);
                     System.out.println("pocessing \t" + l.flag[3] + " " + l.flag[4] + " " + l.flag[5] + l.ListOfCoursesJSON);
                 }
             }
         }.start();
         return true;
     }
-    public boolean timer3(final LoadData l){
+    public boolean timer3(final int x, final LoadData l){
 
         new CountDownTimer(50, 1000) {
             public void onTick(long millisUntilFinished) {
 
             }
             public void onFinish() {
-                if(l.flag[6]){
+                if(x==100){
+                    Toast.makeText(HomePage_Activity.this, "Connection Timed Out", Toast.LENGTH_LONG).show();
+                }
+                else if(l.flag[6]){
                     System.out.println("done \t" + l.InfoOfParticularAssignmentJSON);
                     FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
                     xfragmentTransaction.replace(R.id.containerView, new IndividualAssignment_Fragment()).commit();
 
                 } else {
-                    timer3(l);
+                    timer3(x+1,l);
                     System.out.println("pocessing \t" + l.flag[6] + l.InfoOfParticularAssignmentJSON);
                 }
             }
         }.start();
         return true;
     }
-    public boolean timer4(final LoadData l){
+    public boolean timer4(final int x, final LoadData l){
 
         new CountDownTimer(50, 1000) {
             public void onTick(long millisUntilFinished) {
 
             }
             public void onFinish() {
-                if(l.flag[7]){
+                if(x==100){
+                    Toast.makeText(HomePage_Activity.this, "Connection Timed Out", Toast.LENGTH_LONG).show();
+                }
+                else if(l.flag[7]){
                     System.out.println("done \t"+l.InfoThreadJSON);
                     FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.containerView, new IndividualThread_Fragment()).commit();
 
                 } else {
-                    timer4(l);
+                    timer4(x+1,l);
                     System.out.println("pocessing \t" + l.flag[7]+l.InfoThreadJSON);
                 }
             }
         }.start();
         return true;
     }
-    public boolean timer5(final LoadData l, final String course){
+    public boolean timer5(final int x, final LoadData l, final String course){
 
         new CountDownTimer(50, 1000) {
             public void onTick(long millisUntilFinished) {
 
             }
             public void onFinish() {
-                if(l.flag[8]){
+                if(x==100){
+                    Toast.makeText(HomePage_Activity.this,"Connection Timed Out", Toast.LENGTH_LONG).show();
+                }
+                else if(l.flag[8]){
                     l.SetCourseThreads(course);
-                    timer6(l,course);
+                    timer6(0,l,course);
                     l.flag[5] = false;
                 } else {
-                    timer5(l, course);
+                    timer5(x+1,l, course);
                 }
             }
         }.start();
         return true;
     }
-    public boolean timer7(final LoadData l, final String thread_id1){
+    public boolean timer7(final int x, final LoadData l, final String thread_id1){
 
         new CountDownTimer(50, 1000) {
             public void onTick(long millisUntilFinished) {
 
             }
             public void onFinish() {
-                if(l.flag[9]){
+                if(x==100){
+                    Toast.makeText(HomePage_Activity.this,"Connection Timed Out", Toast.LENGTH_LONG).show();
+                }
+                else if(l.flag[9]){
                     Toast.makeText(HomePage_Activity.this,"New comment added", Toast.LENGTH_LONG).show();
                     l.SetInfoOfThread(thread_id1);
-                    timer4(l);
+                    timer4(0,l);
                     l.flag[7] = false;
                     System.out.println("done \t"+l.AddCommentThreadJSON);
 //                    FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
 //                    fragmentTransaction.replace(R.id.containerView, new IndividualThread_Fragment()).commit();
 
                 } else {
-                    timer7(l, thread_id1);
+                    timer7(x+1,l, thread_id1);
                     System.out.println("pocessing \t" + l.flag[9]+l.AddCommentThreadJSON);
                 }
             }
         }.start();
         return true;
     }
-    public boolean timer6(final LoadData l,final String course_id){
+    public boolean timer6(final int x, final LoadData l,final String course_id){
 
         new CountDownTimer(50, 1000) {
             public void onTick(long millisUntilFinished) {
 
             }
             public void onFinish() {
-                if(l.flag[5]){
+                if(x==100){
+                    Toast.makeText(HomePage_Activity.this, "Connection Timed Out", Toast.LENGTH_LONG).show();
+                }
+                else if(l.flag[5]){
                     System.out.println("done \t"+l.InfoThreadJSON);
                     Bundle bundle = new Bundle();
                     bundle.putString("CourseID", course_id);
@@ -456,7 +477,7 @@ public class HomePage_Activity extends AppCompatActivity {
                     xfragmentTransaction.replace(R.id.containerView, newcoursefragment).commit();
 
                 } else {
-                    timer6(l,course_id);
+                    timer6(x+1,l,course_id);
                     System.out.println("pocessing \t" + l.flag[5]+l.InfoThreadJSON);
                 }
             }
