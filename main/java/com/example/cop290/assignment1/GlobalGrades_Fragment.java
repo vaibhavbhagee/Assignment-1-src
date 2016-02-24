@@ -43,6 +43,10 @@ public class GlobalGrades_Fragment extends Fragment {
         try {
             ParseAllGradesJSON p = new ParseAllGradesJSON(send_request());
 //            gl = new ArrayList<GradesRowObject>();
+            if(p.courses.length==0){
+                TextView t = (TextView) view.findViewById(R.id.no_globalgrade);
+                t.setVisibility(View.VISIBLE);
+            }
             for (int i = 0; i <p.courses.length; i++)
             {
                 gl.add(new GradesRowObject(p.courses[i].code,p.grades[i].name,p.grades[i].score,p.grades[i].weightage,

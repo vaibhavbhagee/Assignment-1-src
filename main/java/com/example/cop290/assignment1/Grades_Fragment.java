@@ -23,7 +23,7 @@ public class Grades_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_notification_, container, false);
+        View view = inflater.inflate(R.layout.fragment_grades_, container, false);
 
         //GET THE BUNDLE AND ALL THAT SHIZ AND PASS IT TO POPULATE
 
@@ -45,7 +45,10 @@ public class Grades_Fragment extends Fragment {
 
         try {
             ParseCourseGradesJSON p = new ParseCourseGradesJSON(send_request());
-
+            if(p.grades.length==0){
+                TextView t = (TextView) view.findViewById(R.id.no_grade);
+                t.setVisibility(View.VISIBLE);
+            }
             for (int i = 0; i <p.grades.length; i++)
             {
                 gl.add(new CourseGradesRowObject(p.grades[i].name,p.grades[i].score,p.grades[i].weightage,

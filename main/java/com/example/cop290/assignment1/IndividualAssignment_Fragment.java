@@ -42,6 +42,9 @@ public class IndividualAssignment_Fragment extends Fragment {
         TextView textview= (TextView) view.findViewById (R.id.assignment_description);
         textview.setMovementMethod(new ScrollingMovementMethod());
 
+        TextView tv = (TextView) view.findViewById( R.id.assignment_name);
+        tv.setSelected(true);
+
         return view;
     }
 

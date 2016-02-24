@@ -7,11 +7,52 @@
     <!-- TODO: Update blank fragment layout -->
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="22223333"
+            android:text="Welcome"
+            android:paddingTop="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:id="@+id/textView2"
-            android:textSize="200dp" />
+            android:textSize="50dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Name Wale"
+        android:textStyle="bold"
+        android:paddingTop="100dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:id="@+id/textView2"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="You have unread notifications."
+        android:paddingTop="250dp"
+        android:visibility="invisible"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:id="@+id/textView2"
+        android:textSize="20dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="You have pending assignments."
+        android:paddingTop="300dp"
+        android:visibility="invisible"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:id="@+id/textView2"
+        android:textSize="20dp" />
 
 </FrameLayout>

@@ -4,6 +4,16 @@
     android:layout_height="match_parent"
     tools:context="com.example.cop290.assignment1.Grades_Fragment">
 
+    <TextView
+        android:id="@+id/no_grade"
+        android:visibility="invisible"
+        android:layout_marginTop="28dp"
+        android:textSize="28dp"
+        android:textAlignment="center"
+        android:text="No Grades"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <!-- TODO: Update blank fragment layout -->
     <ListView
         android:layout_marginTop="20dp"

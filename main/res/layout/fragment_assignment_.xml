@@ -11,7 +11,7 @@
         android:layout_marginTop="28dp"
         android:textSize="28dp"
         android:textAlignment="center"
-        android:text="Yay! No Notification"
+        android:text="Yay! No Assignments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
