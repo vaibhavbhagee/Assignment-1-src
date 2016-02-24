@@ -19,7 +19,6 @@
         android:layout_width="match_parent"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:maxHeight="50dp"
         android:layout_height="wrap_content" />
     <!-- Get the time readable below the the comment and
          make the formatting proper-->

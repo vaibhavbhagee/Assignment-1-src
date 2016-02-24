@@ -65,7 +65,8 @@ public class HomePage_Activity extends AppCompatActivity {
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.replace(R.id.containerView, new HomePage_Fragment()).commit();
 
-        String json_response = savedInstanceState.getString("UserJSON");
+        Bundle bundle = getIntent().getExtras();
+        String json_response = bundle.getString("UserJSON");
         try
         {
             ParseLoginJSON p = new ParseLoginJSON(json_response);

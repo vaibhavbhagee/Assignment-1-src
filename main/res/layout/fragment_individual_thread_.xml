@@ -66,13 +66,14 @@
     <EditText
         android:backgroundTint="@color/google_green"
         android:hint="Comment"
-        android:paddingTop="350dp"
         android:maxLines="3"
+        android:minLines="3"
+        android:gravity="bottom"
         android:id="@+id/new_comment"
         android:layout_width="match_parent"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="80dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
     <android.support.design.widget.FloatingActionButton
         app:backgroundTint="@color/google_green"
@@ -81,14 +82,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_menu_send"
-
-
-        android:layout_marginEnd="20dp"
-
-
-        android:layout_marginTop="320dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom|end"
+        android:layout_alignBottom="@+id/new_comment"
+        android:layout_alignEnd="@+id/listView"
+        android:layout_margin="@dimen/fab_margin"
         />
     <!--android:layout_marginLeft="@dimen/fab_margin"
             android:layout_marginRight="@dimen/fab_margin"-->
@@ -98,11 +95,11 @@
         android:id="@+id/listView"
         android:paddingLeft="20dp"
         android:paddingTop="20dp"
-        android:paddingBottom="20dp"
+        android:background="#CCC"
+        android:layout_marginBottom="80dp"
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"></ListView>
+        android:layout_height="wrap_content"></ListView>
 
 </RelativeLayout>
 
