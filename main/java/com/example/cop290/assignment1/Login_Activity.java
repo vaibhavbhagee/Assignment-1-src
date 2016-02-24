@@ -98,6 +98,9 @@ public class Login_Activity extends AppCompatActivity {
                                 Intent intent = new Intent(thisContext, HomePage_Activity.class);
                                 Bundle b = new Bundle();
 
+                                LoadData l = new LoadData();
+                                l.LoginResponseJSON = response;
+
                                 b.putString("ServerURL", ServerURL);
                                 b.putString("UserJSON", response);
 

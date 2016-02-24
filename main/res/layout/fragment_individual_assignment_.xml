@@ -5,25 +5,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.cop290.assignment1.IndividualAssignment_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+
+    <android.support.design.widget.FloatingActionButton
+        app:backgroundTint="@color/google_green"
+        android:id="@+id/backfab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="10dp"
+        android:rotation="180"
+        android:src="@android:drawable/ic_menu_send" />
 
     <TextView
         android:id="@+id/assignment_name"
         android:paddingTop="20dp"
         android:textColor="#153"
-        android:paddingLeft="20dp"
+        android:paddingLeft="10dp"
         android:paddingBottom="10dp"
+        android:layout_toRightOf="@+id/backfab"
         android:textSize="30dp"
         android:maxLines="1"
-        android:maxHeight="80dp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ASS-NAMEHASDBSAHDHJSDKSAB"
-        android:ellipsize="marquee"
-        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollbars="horizontal"
         android:scrollHorizontally="true"
+
         />
 
 

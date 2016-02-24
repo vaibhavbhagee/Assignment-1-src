@@ -3,7 +3,9 @@ package com.example.cop290.assignment1;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
@@ -43,7 +45,31 @@ public class IndividualAssignment_Fragment extends Fragment {
         textview.setMovementMethod(new ScrollingMovementMethod());
 
         TextView tv = (TextView) view.findViewById( R.id.assignment_name);
-        tv.setSelected(true);
+        tv.setMovementMethod(new ScrollingMovementMethod());
+
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.backfab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+               /* Bundle bundle = new Bundle();
+                bundle.putString("CourseID", "col732");
+*/
+                /*Course_Fragment newcoursefragment = new Course_Fragment();
+                newcoursefragment.setArguments(bundle);
+                FragmentTransaction xfragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                xfragmentTransaction.replace(R.id.containerView, newcoursefragment).commit();*/
+                /*FragmentTransaction xfragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                xfragmentTransaction.replace(R.id.containerView, new course()).commit();*/
+                //getActivity().getSupportFragmentManager().popBackStack();
+                //Intent intent = new Intent(thisContext, HomePage_Activity.class);
+                //startActivity(intent);
+
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                ///         .setAction("Action", null).show();
+            }
+        });
+
 
         return view;
     }

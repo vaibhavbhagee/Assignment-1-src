@@ -22,6 +22,8 @@ public class LoadData extends Activity {
 
     public static boolean[] flag = new boolean[11];
 
+
+    public static String LoginResponseJSON;
     public static String ListOfCoursesJSON;
     public static String AllNotificationsJSON;
     public static String AllGradesJSON;

@@ -91,7 +91,7 @@ public class HomePage_Activity extends AppCompatActivity {
 
                 if (menuItem.getItemId() == 1 || menuItem.getItemId() == 2 || menuItem.getItemId() == 3 || menuItem.getItemId() == 4 || menuItem.getItemId() == 5 || menuItem.getItemId() == 6 || menuItem.getItemId() == 7 || menuItem.getItemId() == 8 || menuItem.getItemId() == 9 || menuItem.getItemId() == 0) {
 
-                    on_loadCourse(p.courses[menuItem.getItemId()].code, menuItem);
+                    on_loadCourse(p.courses[menuItem.getItemId()].code , p.courses[menuItem.getItemId()].description, menuItem);
 
                 }
 
@@ -161,14 +161,14 @@ public class HomePage_Activity extends AppCompatActivity {
         }catch(Exception e){e.printStackTrace();}
 
     }
-    public void on_loadCourse(String s, MenuItem menuItem){
+    public void on_loadCourse(String s, String course, MenuItem menuItem){
         final LoadData l = new LoadData();
 
         l.SetListOfAssignments(s);
         l.SetCoursegrades(s);
         l.SetCourseThreads(s);
 
-        timer2(0,l, menuItem);
+        timer2(0,l, menuItem, course);
 
         l.flag[3] = false;
         l.flag[4] = false;
@@ -247,7 +247,7 @@ public class HomePage_Activity extends AppCompatActivity {
         System.out.println("testing " + comment1);
         System.out.println("testing " + thread_id1);
 
-        l.SetAddCommentToThread(thread_id1, comment1.replace(' ','+'));
+        l.SetAddCommentToThread(thread_id1, comment1.replace(' ', '+'));
         timer7(0,l, thread_id1);
         l.flag[9] = false;
 
@@ -332,20 +332,20 @@ public class HomePage_Activity extends AppCompatActivity {
         }.start();
         return true;
     }
-    public boolean timer2(final int x, final LoadData l, final MenuItem menuItem){
+    public boolean timer2(final int x, final LoadData l, final MenuItem menuItem, final String course){
 
         new CountDownTimer(50, 1000) {
             public void onTick(long millisUntilFinished) {
 
             }
             public void onFinish() {
-                if(x==100){
+                if(x==100) {
                     Toast.makeText(HomePage_Activity.this, "Connection Timed Out", Toast.LENGTH_LONG).show();
                 }
                 else if(l.flag[3] && l.flag[4] && l.flag[5]){
 
                     Bundle bundle = new Bundle();
-                    bundle.putString("CourseID", p.courses[menuItem.getItemId()].code);
+                    bundle.putString("CourseID", p.courses[menuItem.getItemId()].code + ": " + course);
 
                     Course_Fragment newcoursefragment = new Course_Fragment();
                     newcoursefragment.setArguments(bundle);
@@ -354,7 +354,7 @@ public class HomePage_Activity extends AppCompatActivity {
                     xfragmentTransaction.replace(R.id.containerView, newcoursefragment).commit();
 
                 } else {
-                    timer2(x+1,l, menuItem);
+                    timer2(x+1,l, menuItem, course);
                     System.out.println("pocessing \t" + l.flag[3] + " " + l.flag[4] + " " + l.flag[5] + l.ListOfCoursesJSON);
                 }
             }
@@ -368,7 +368,7 @@ public class HomePage_Activity extends AppCompatActivity {
 
             }
             public void onFinish() {
-                if(x==100){
+                if(x==100) {
                     Toast.makeText(HomePage_Activity.this, "Connection Timed Out", Toast.LENGTH_LONG).show();
                 }
                 else if(l.flag[6]){
@@ -391,7 +391,7 @@ public class HomePage_Activity extends AppCompatActivity {
 
             }
             public void onFinish() {
-                if(x==100){
+                if(x==100) {
                     Toast.makeText(HomePage_Activity.this, "Connection Timed Out", Toast.LENGTH_LONG).show();
                 }
                 else if(l.flag[7]){
@@ -462,7 +462,7 @@ public class HomePage_Activity extends AppCompatActivity {
 
             }
             public void onFinish() {
-                if(x==100){
+                if(x==100) {
                     Toast.makeText(HomePage_Activity.this, "Connection Timed Out", Toast.LENGTH_LONG).show();
                 }
                 else if(l.flag[5]){
